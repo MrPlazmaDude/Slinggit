@@ -1,0 +1,31 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore all confir changes
+#/config
+
+# Ignore sample photos
+public/assets/posts/
+public/uploads/posts/
+sampleimages/
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+Gemfile.lock
+Gemfile
+
+.idea/*
+app/views/admin/problem_reports.erb
+app/views/admin/view_images.html.erb.orig
+app/views/users/index.html.erb

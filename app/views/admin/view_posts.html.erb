@@ -1,0 +1,42 @@
+<div class="row wrapper adminSection">  
+  <h1>All Posts</h1>
+
+  <div class="row">
+  <%= will_paginate @posts%>
+  </div>
+
+  <section>
+    <table class="admin_table table_bordered table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Item</th>
+          <th>Photo</th>
+          <th>User</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.id %></td>
+            <td><%= link_to post.hashtag_prefix, {:controller => :admin, :action => :view_post, :id => post.id} %></td>
+            <td>
+              <% if post.photo_file_name.blank? %>
+                <%= image_tag "noPhoto_80x80.png" %>
+              <% else %>
+                <%= image_tag post.photo.url(:search), :class => "img_border" %>
+              <% end %>
+            </td>
+            <td><%= link_to post.user.name, {:controller => :admin, :action => :view_user, :id => post.user.id} %></td>
+            <td>Coments (<%= post.comments.count %>)</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="row">
+  <%= will_paginate @posts%>
+  </div>
+</div>

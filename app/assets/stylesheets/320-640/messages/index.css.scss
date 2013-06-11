@@ -1,0 +1,18 @@
+#msgArticles {
+	&.col4, &.pull_left {
+		width: 100%;
+		float: none;
+	}
+}
+
+.messages {
+	article.col4 {
+		width: 100%;
+		padding: 15px;
+
+		.postArticle{
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+	}
+}

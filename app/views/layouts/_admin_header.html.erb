@@ -1,0 +1,65 @@
+<header id="mainHeader" class="headerUp row">
+  
+<div class="row wrapper">
+<!-- LOGO -->
+    <hgroup class="col2 pull_left">
+      <h1>Slinggit</h1>
+<%= link_to image_tag('logos/slinggit_logotype_blue_417x162.png', width: '100%', height: 'auto', title: 'Slinggit Logo blue', alt: 'Slinggit Logo'), {:action => 'home', :controller => 'static_pages'}, class: 'row' %>
+      <h6>beta</h6>
+    </hgroup>
+<!-- END LOGO -->
+
+<!-- NAV GROUP -->
+    <nav class="col4 pull_left">
+<!-- NAV BUTTONS WRAPPER -->
+      <div class="row">
+
+ <!-- INDEX -->  
+        <%= link_to admin_dashboard_path, class: "col2 pull_left #{'active' if current_page?(admin_dashboard_path)}" do %>
+          Dashboard
+        <% end %>
+<!-- END INDEX -->
+
+<!-- USERS -->
+        <%= link_to admin_users_path, class: "col2 pull_left #{'active' if current_page?(admin_users_path)}" do %>
+        Users
+        <% end %>
+<!-- END USERS -->
+
+<!-- POSTS -->
+        <%= link_to admin_posts_path, class: "col2 pull_left #{'active' if current_page?(admin_posts_path)}" do %>
+        Posts
+        <% end %>
+<!-- END POSTS -->
+
+<!-- COMMENTS -->
+        <%= link_to admin_comments_path, class: "col2 pull_left #{'active' if current_page?(admin_comments_path)}" do %>
+        Comments
+        <% end %>
+<!-- END COMMENTS -->
+
+<!-- PROBLEM REPORTS -->  
+        <%= link_to admin_problem_reports_path, class: "col2 pull_left #{'active' if current_page?(admin_problem_reports_path)}" do %>
+          Problem Reports
+        <% end %>
+<!-- END PROBLEM REPORTS -->
+
+<!-- DATABASE -->  
+        <%= link_to admin_database_path, class: "col2 pull_left #{'active' if current_page?(admin_database_path)}" do %>
+          Database
+        <% end %>
+<!-- END DATABASE -->
+
+    </nav>
+<!-- END RIGHT NAV GROUP -->
+
+</header>
+<!-- END HEADER -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.BTN_nav_dropDown').dropdown()
+        window.quickSearchView()
+        window.initiHeaderSearch()
+    });
+</script>

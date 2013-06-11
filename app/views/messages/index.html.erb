@@ -1,0 +1,96 @@
+<% provide(:title, "Inbox") %>
+<section id="userMessages" class="wrapper">
+
+  <section class="secondary">
+    <div class="secondary_inner">
+
+      <%= render 'shared/user_info' %>
+
+    </div>
+  </section>
+
+  <section id="msgArticles" class="main">
+
+    <div class="row">
+      <header>
+        <h1>Inbox (<%= @unread %>)</h1>
+      </header>
+      <div id="boxFilters" class="row">
+        <%= link_to "Inbox", {:controller => :messages, :action => :index}, class: "active" %>
+        <%= link_to "Sent", {:controller => :messages, :action => :sent}%>
+      </div>
+      <%= link_to 'Delete Selected', '#', :class => 'btn_red col2', :id => 'deleteSelected', :onclick => 'deleteSelectedMessages()' %>
+      <%= form_tag(url_for :controller => :messages, :action => :delete_all) do %>
+          <%= hidden_field_tag :message_ids %>
+      <% end %>
+    </div>
+
+    <div id="msgArticleWrapper">
+      <% if @messages.any? %>
+          <% @messages.each do |message| %>
+              <%= link_to :action => :show, :id => message.id_hash do %>
+                  <div class="row <%= message.recipient_status == STATUS_UNREAD ? 'white_well' : 'grey_well' %>">
+                    <p class="col4 pull_left <%= message.recipient_status == STATUS_UNREAD ? 'messageUnread' : 'messageRead' %>">
+                      <%= check_box_tag :edit, message.id_hash, false, :class => 'col1 pull_left action_checkBox', :id => message.id_hash %>
+                      #<%= message.source_object.hashtag_prefix %> -
+                      <%= message.body.to_ellipsis(30) %>
+                    </p>
+                    <small class="col1 timestamp pull_right"><%= time_ago_in_words(message.created_at) %> ago.</small>
+                  </div>
+              <% end %>
+          <% end %>
+          <%= will_paginate @messages %>
+      <% else %>
+          No messages
+      <% end %>
+    </div>
+
+  </section>
+
+</section>
+
+<!-- I will add this to coffee script when I get home -->
+<script style="text/javascript">
+    selected_boxes = [];
+    $(document).ready(function () {
+        showHideDelete();
+        $('#deleteSelected').hide();
+        $('.action_checkBox').change(function (e) {
+            index = selected_boxes.indexOf(e.target.value)
+            if (e.target.checked) {
+                if (index == -1) {
+                    selected_boxes.push(e.target.value);
+                }
+            } else {
+                if (index != -1) {
+                    selected_boxes.splice(index, 1);
+                }
+            }
+            showHideDelete();
+        })
+    })
+
+    function showHideDelete() {
+        show = false;
+        $('.action_checkBox').each(function (e) {
+            checkBox = $('#' + this.id)
+            if (checkBox.is(':checked')) {
+                show = true;
+            }
+        })
+        if (show) {
+            $('#deleteSelected').show();
+        } else {
+            $('#deleteSelected').hide();
+        }
+    }
+
+    function deleteSelectedMessages() {
+        if (confirm("Are you sure you want to delete selected messages?")) {
+            $('#message_ids').val(selected_boxes.join());
+            $('form').submit();
+        } else {
+            return false;
+        }
+    }
+</script>

@@ -1,0 +1,18 @@
+.invite_wrapper {
+	h1.headline {
+		font-size: ($font-size * 1.875);
+	}
+	.col1, .col2, .col3, .col4, .col5 {
+		width: 100%;
+	}
+	.offset1, .offset2, .offset3, .offset4, .offset5 {
+		margin-left: 0;
+	}
+	.pull_left, .pull_right {
+		clear: both;
+		float: none;
+	}
+	input[type="password"], input[type="email"], input[type="text"] {
+		height: 2.6em;
+	}
+}

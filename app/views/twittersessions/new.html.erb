@@ -1,0 +1,7 @@
+<h1>New Twitter Session</h1>
+
+<% if not current_user.blank? and not current_user.twitter_authorized? %>
+	<%= form_tag('/twittersessions') do %>
+	    <%= image_submit_tag("sign-in-with-twitter.png") %>
+	<% end %>
+<% end %>	

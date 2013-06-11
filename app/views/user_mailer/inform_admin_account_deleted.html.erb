@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p><%= "#{@user.name}(#{@user.email}) with user_id #{@user.id} has deleted their account.  They have provided the following feedback:" %></p>
+<p>
+  <% if not @user_feedbacks.blank? %>
+    <ul>
+      <% @user_feedbacks.each do |feedback| %>
+          <li>
+            <%= feedback.information %> (source: <%= feedback.source %>)
+          </li>
+      <% end %>
+    </ul>
+<% else %>
+    No Feedback Provided
+<% end %>
+</p>
+
+<p>Sincerely,</p>
+
+<p>The Angel of Death</p>
+</body>
+</html>

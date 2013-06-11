@@ -1,0 +1,41 @@
+.homepage {
+	> .row {
+		> .col6 {
+			> .row > .col3.offset1{
+				width: 100%;
+				margin-left: 0;
+			}
+			> aside > .col2.offset2.btn_blue {
+				width: 100%;
+				margin-left: 0;
+			}
+		}
+	}
+	.homeSignedIn {
+		> .col4,
+		> .col2 {
+			width: 100%;
+		}
+		.userInfo {
+			padding-left: 0;
+		}
+		h1 {
+			font-size: ($font-size * 1.125);
+		}
+	}
+	.homeNotSignedIn {
+		h1.headline {
+			font-size: ($font-size * 1.75);
+			margin-top: ($font-size * .5);
+		}
+		.col4,
+		.col2 {
+			width: 100%;
+			margin-left: 0;
+		}
+	}
+	.home_featurePost {
+		width: 100%;
+		margin-left: 0;
+	}
+}

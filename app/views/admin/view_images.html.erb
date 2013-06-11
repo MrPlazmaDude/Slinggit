@@ -1,0 +1,51 @@
+<h1>View Uploaded Images</h1>
+
+<div id="errorDiv"></div>
+<% if not @image_datas.blank? %>
+    <div id="imageContent"></div>
+<% else %>
+    <div>No Images Available</div>
+<% end %>
+
+
+<script type="text/javascript">
+
+    <% @image_datas.each do |image_data| %>
+        window.createPhotoArticle(
+            $('#imageContent'), 
+            "<%= image_data[:image_path] %>",
+            "<%= image_data[:post_id] %>",
+            "<%= url_for :controller => :admin, :action => :eradicate_all_from_image %>"
+        ).render()
+    <% end %>
+
+</script>
+
+
+<!-- Chase feel free to delete these when you style this to work on mobile as well. -->
+
+<style type="text/css">
+    a {
+        float: left;
+        padding: 1px;;
+    }
+
+    #workingDiv {
+        font-size: 20px;
+        color: red;
+        text-decoration: blink;
+        margin-bottom: 20px;
+    }
+
+    #errorDiv {
+        font-size: 20px;
+        color: red;
+        margin-bottom: 20px;
+    }
+
+    #doneDiv {
+        font-size: 20px;
+        color: green;
+        margin-bottom: 20px;
+    }
+</style>

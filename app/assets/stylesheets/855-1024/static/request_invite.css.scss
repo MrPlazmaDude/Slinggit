@@ -1,0 +1,45 @@
+.invite_wrapper {
+	article{
+		> #home_slinggitIcons {
+			width: ($sixCols * 1.5);
+			margin-left: ($sixCols * .25);
+			margin-right: ($sixCols * .25);
+		}
+		> .col3.pull_left {
+			width: ($sixCols * 4);
+		}
+		.headline { //.headline_bold {
+			font-size: $font-size * 2.25;
+		}
+		h3.row.headline {
+			font-size: 3.6em;
+		}
+		> .col4.offset1.grey_well {
+			margin-top: 0;
+			margin-left: 0;
+			width: ($sixCols * 2);
+			font-size: ($font-size * .5);
+			clear: left;
+			float: left;
+			.twitIcon {
+				margin-left: $sixCols;
+				margin-right: $sixCols;
+			}
+			.facebookIcon {
+				margin-left: $sixCols;
+			}
+		}
+		> .col4.offset1 {
+			margin-left: 0;
+			margin-top: 0;
+			clear: right;
+			float: right;
+			.row.grey_well {
+				margin: 0;
+				label, p {
+					padding-left: 2.4em;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+/*
+ *  FILENAME: 641-800/posts/show
+ */
+
+#closedPost{
+	@include white-well;
+	margin-top: 1em;
+	padding: 15px 10px 15px 10px;
+	text-align: center;
+
+	.innerHeader {
+		padding: 0px 0px 10px 0px;
+	}
+
+	p{
+		font-size: $font-size * 1;
+	}
+
+	#findSimilar{
+		margin-top: 15px;
+
+		.col4{
+			width: 80%;
+		}
+	}
+}

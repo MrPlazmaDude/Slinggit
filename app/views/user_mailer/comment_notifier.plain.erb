@@ -1,0 +1,11 @@
+People are interested in the items you have for sale.
+
+The following posts have received comments today.
+<% @todays_comments.each do |comment| %>
+    <%- post = comment.post('id_hash,hashtag_prefix') %>
+    <%= "#{post.hashtag_prefix} - #{BASEURL}/posts/#{post.id_hash}" %>
+<%- end %>
+
+Sincerely,
+
+Your friends at Slinggit

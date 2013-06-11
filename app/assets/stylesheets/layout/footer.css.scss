@@ -1,0 +1,96 @@
+.pageFoot {
+	clear:both;
+	font-size: $small-font;
+	#{o}box-shadow: $foot-shadow;
+	#{$ff}box-shadow: $foot-shadow;
+	#{$wk}box-shadow: $foot-shadow;
+	box-shadow: $foot-shadow;
+	position:relative;
+	z-index:1020;
+	padding-bottom: $leading;
+	//margin-top: -16em;
+		.wrapper > .col3 {
+			margin-top: $body-font;
+			width: 100%;
+			display: block;
+		}
+			ul,
+			.row {
+				margin-bottom: $body-font;
+				line-height: $leading;
+				//padding-left: 20%;
+			}
+		nav a {
+			color: $main-grey;
+			//text-shadow: $txt-shdw;
+			@include transition;
+			&:hover,
+			&:focus {
+				color: $main-blue;
+			}	
+		}
+		nav >.row:first-child {
+			li {
+				text-align: center;
+				//width: ($sixCols * .2);
+				padding-right: ($sixCols * .15);
+				margin-right: ($sixCols * .15);
+				border-right: 1px solid lighten($main-grey, 20%);
+				&:last-child {
+					border-right: none;	
+				}
+			}
+		}
+	.footerSignIn {
+		line-height: $leading;
+
+		a {
+			color: $main-blue;
+		}
+	}
+	small {
+		color: $main-grey;
+		//line-height: $leading;
+		margin-left: $smaller-font;
+		padding-left: $small-font;
+	}
+	.facebookIconSmall,
+	.twitIconSmall_dark,
+	.blogIconSmall {
+		text-indent: 20px;
+		&:visited,
+		&:link {
+			color: lighten($main-grey, 15%);
+		}
+		&:hover,
+		&:focus {
+			color: $main-blue;
+		}
+	}
+	.coloradoIcon {
+		+ span {
+			margin-left: $smallest-font;
+		}
+	}
+}
+
+@media all and (min-width: 641px) {
+	.pageFoot {
+		.wrapper > .col3 {
+			width: ($sixCols * 3);
+			display: inline-block;
+		}
+		.footerSignIn {
+			text-align: right;
+		}
+		small {
+			text-align: right;
+			&:first-child {
+				border-left: 1px solid lighten($main-grey, 20%);
+			}
+			+ a.pull_left {
+				float: right;
+			}
+		}
+	}
+}

@@ -1,0 +1,101 @@
+// 320-640
+@media all and (min-width: 320px) and (max-width: 640px) {
+	// GENERAL CONTENT PAGE LAYOUT
+	@import "320-640/layout/common.css.scss"; 
+
+	// SHARED
+	// notices
+	@import "320-640/shared/flash_notices.css.scss";
+		
+	// HOMEPAGE
+	@import "320-640/static/home.css.scss";
+
+	// SIGN IN
+	@import "320-640/static/signin.css.scss";
+
+	// SIGN UP
+	@import "320-640/static/signup.css.scss";
+
+	// EMAIL REFERENCE PAGE
+	@import "320-640/static/email_verification.css.scss";
+
+	// USERS
+	@import "320-640/users/show.css.scss";
+	@import "320-640/users/edit.css.scss";
+	@import "320-640/users/_user_info.css.scss";
+
+	// POSTS
+	@import "320-640/posts/show.css.scss";
+	@import "320-640/posts/new.css.scss";
+	@import "320-640/posts/common.css.scss";
+	@import "320-640/posts/_post.css.scss";
+
+	// COMMENTS
+	@import "320-640/comments/_comment.css.scss";
+
+	// MESSAGES
+	@import "320-640/messages/show.css.scss";
+	@import "320-640/messages/index.css.scss";
+	@import "320-640/messages/new.css.scss";
+
+	// SOCIAL NETWORKS
+	@import "320-640/static/social_networks.css.scss";
+
+	// REQUEST INVITE
+	@import "320-640/static/request_invite.css.scss";
+
+	// ABOUT US PAGE
+	@import "320-640/static/about.css.scss";
+
+	// CONTACT US PAGE
+	@import "320-640/static/contact.css.scss";	
+
+	// HELP PAGE
+	@import "320-640/static/help.css.scss";
+
+	// ADMIN STUFF
+	@import "320-640/admin/common.css.scss";
+}
+// END 320-640
+
+// 480-640
+@media all and (min-width: 480px) and (max-width: 640px) {
+	// HEADER
+	@import "480-640/layout/header.css.scss";
+
+	// REQUEST INVITE
+	@import "480-640/static/request_invite.css.scss";
+}
+// END 480-640
+
+// 641-800
+@media all and (min-width: 641px) and (max-width: 854px) {	
+	// HEADER 
+	@import "641-800/layout/header.css.scss";
+
+	// REQUEST INVITE
+	@import "641-800/static/request_invite.css.scss";
+
+	// POSTS
+	@import "641-800/posts/show.css.scss";
+}
+// END 641-800
+
+// 855 and up
+@media all and (min-width: 855px) {
+	// HEADER 
+	@import "855-1024/layout/header.css.scss";
+
+	// REQUEST INVITE
+	@import "855-1024/static/request_invite.css.scss";
+}
+// END 801-960
+
+// 1025 and up
+//@media all and (min-width: 1025px) {
+	// HEADER 
+//	@import "1025-UP/layout/header.css.scss";
+//}
+// END 1025 and up
+
+//just a little white space for buffer

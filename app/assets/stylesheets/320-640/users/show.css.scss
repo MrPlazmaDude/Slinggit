@@ -1,0 +1,37 @@
+// style for user show (with list of posts) and post search
+#userPostsWrapper, #searchPostWrapper, #viewPostsWrapper{
+	&> .col2, &> .col4{
+		@include colNoFloatClearFix;
+	}
+}
+#userPostsWrapper, #searchPostWrapper{
+
+	.userInfo{
+		padding-left: 0;
+
+		
+	}
+
+	#userPosts, #postSearchResults{
+		padding: 20px 10px 20px 10px;
+		.title_row{
+			header{
+				margin-bottom: 0px;
+				padding-bottom: 5px;
+			}
+			.btn_green{
+				width: 100%;
+			}
+			#postsFilters{
+				//text-align: center;
+			}
+			#add_more_networks{
+				.col3{
+					padding-left: 0px;
+					padding-right: 0px;
+					@include colNoFloatClearFix;
+				}
+			}
+		}
+	}
+}

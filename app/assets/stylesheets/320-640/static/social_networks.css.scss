@@ -1,0 +1,36 @@
+.accounts {
+	.col4, .col2 {
+		width: 100%;
+		display: block;
+	}
+	.col2 {
+		padding-left: 0;
+	}
+	article ul {
+		li {
+			margin-bottom: ($font-size * 1.5);
+			&:first-child {
+			margin-bottom: 0;
+			}
+		}
+		&:last-child li {
+			margin: 1.6em 0;
+			&:first-child {
+				margin-top: .8em;
+			}
+		}
+	}
+	ul.networks_metaData,
+	#account-actions > span {
+		display: none;
+	}
+	ul.col1 {
+		width: 25%;
+	}
+	#account-actions > a:last-child {
+		width: auto;
+	}
+	#account-actions > a:first-child {
+		display: none;
+	}
+}

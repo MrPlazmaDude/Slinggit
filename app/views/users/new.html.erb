@@ -1,0 +1,78 @@
+<%= provide(:title, 'Sign up') %>
+<section class="wrapper wrapper_newUser white_well">
+	<header class="row">
+		<h1 class="bottom_border">Sign up</h1>
+	</header>
+
+<div class="col3 well">
+	<%= form_for(@user) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		
+<!-- user name -->
+		<fieldset class="row">
+			<%= f.label :name, "Username", for: "user_name", class: "col6" %>
+			<%= f.text_field :name, placeholder: "Username", class: "col6" %>
+			<div class="col6" id="usernameAvailabilityNotification"></div>
+		</fieldset>
+<!-- end -->
+
+<!-- email -->
+		<fieldset class="row">
+			<%= f.label :email, for: "user_email", class: "col6" %>
+			<%= f.email_field :email, placeholder: "Email", class: "col6" %>
+			<div class="col6" id="emailAvailabilityNotification"></div>
+		</fieldset>
+<!-- end -->
+
+<!-- authenticate buttons -->
+		<fieldset class="row form-actions" id="form_signUpActions">
+			<%= link_to("#", :class => "col3 pull_left btn_twitter ss-twitter ss-social", :onclick => "javascript:void(0)", :id => "twitterBTN") do %>
+				Sign Up with Twitter
+			<% end %>
+	
+			<%= f.button "No Twitter", type: "button", class: "col2 pull_right btn_ltGrey", onclick: "javascript:void(0)", id: 'noThanksBTN' %>
+			<%= hidden_field_tag :twitter_authenticate, nil %>
+		</fieldset>
+<!-- end -->
+
+<!-- password field -->
+	<fieldset class="row form_hiddenFields">
+		<%= f.label :password, "Slinggit Password", for: "user_password", class: "col6" %>
+		<%= f.password_field :password, placeholder: "Password", class: "col6" %>
+	</fieldset>
+<!-- end -->
+
+<!-- password confirm -->
+	<fieldset class="row form_hiddenFields">
+		<%= f.label :password_confirmation, "Confirm Password", for: "user_password_confirmation", class: "col6" %>
+		<%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "col6" %>
+	</fieldset>
+<!-- end -->
+
+<!-- submit -->
+	<fieldset class="row form_hiddenFields">
+		<%= f.button "Create my account", class: "col3 pull_left btn_green" %>
+		<%= link_to 'start over', nil, :onclick => "javascript:void(0)", class: "col2 pull_right", :id => 'signUpStartOverLink' %>
+		<div class="row termsOfService">
+			<small>By signing into Slinggit. You agree to our <%= link_to "Terms of Service", terms_of_service_path %>.</small>
+		</div>
+	</fieldset>
+
+<!-- end -->
+	<% end %>
+</div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        window.emailValidationView(
+            "<%= url_for :controller => :users, :action => :verify_email_availability %>"
+          , "<%= url_for :controller => :users, :action => :verify_username_availability %>"
+          , "<%= url_for :controller => :users, :action => :reset_page_session %>"
+          , "<%= url_for :controller => :users, :action => :set_no_thanks %>"
+          , "<%= session[:twitter_permission_granted] %>"
+          , "<%= session[:no_thanks]%>"
+        )
+    });
+
+</script>

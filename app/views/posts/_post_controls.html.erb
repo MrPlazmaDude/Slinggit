@@ -1,0 +1,109 @@
+<div id="postContolsActions" class="row">
+
+  <div class="row contentHeader">
+    <div class="col5 innerHeader">
+      <h6>Edit post</h6>
+    </div>
+  </div>
+
+  <div class="row">
+    <% if not current_user.is_suspended? %>
+
+        <div id="closePromptModal" class="modal hide fade">
+          <div class="modal-header">
+            <h3>Reason for closing</h3>
+          </div>
+
+          <%= form_for @post, html: {class: "modal-form"} do |f| %>
+              <% if @post.open? %>
+
+                  <div class="modal-body">
+                    <%= f.hidden_field :open, value: false %>
+
+                    <fieldset class="row">
+                      <%= f.radio_button :closing_reason, "SLD", class: "col1 pull_left", :checked => true %>
+                      <%= f.label :closing_reason, "Sold it", class: "col4 pull_left" %>
+                    </fieldset>
+
+                    <fieldset class="row">
+                      <%= f.radio_button :closing_reason, "NSL", class: "col1 pull_left" %>
+                      <%= f.label :closing_reason, "Didn't sell", class: "col4 pull_left" %>
+                    </fieldset>
+
+                    <fieldset class="row">
+                      <%= f.radio_button :closing_reason, "OTH", class: "col1 pull_left" %>
+                      <%= f.label :closing_reason, "Other", class: "col4 pull_left" %>
+                    </fieldset>
+                  </div>
+
+                  <div class="modal-footer">
+                    <div class="button-wrapper pull_left col3 first">
+                      <button type="button" class="close col6 btn_ltGrey" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="button-wrapper pull_right col3 last">
+                      <%= f.button "Archive", type: "submit", class: "col6 btn_blue" %>
+                    </div>
+                  </div>
+
+
+              <% end %>
+          <% end %>
+        </div>
+
+        <% if @post.open? %>
+          <%= link_to "Repost", edit_post_path(@post), class: "ss-repeat col6 btn_green" %>
+        <% end %>
+
+        <div class="button-wrapper pull_left col3 first">
+          <button class="ss-folder row btn_ltGrey" type="button" id="archivePrompt">
+            Archive
+          </button>
+        </div>
+
+        <div class="button-wrapper pull_right col3 last">
+          <%= link_to "Delete", {:controller => :posts, :action => :delete_post, :id => @post.id, :status => "DEL"}, confirm: "Delete Post? This action cannot be undone!", class: "ss-trash row btn_ltGrey" %>
+        </div>
+
+    <% else %>
+        <div id="notice_explanation_bubble" style="width:100%">
+          You are currently in time out. As a result of this, you cannot edit this post.
+        </div>
+    <% end %>
+  </div>
+
+</div>
+
+
+<% if (@twitter_posts.any? or @facebook_posts.any?) %>
+
+    <div id="networkActions" class="row">
+      <div class="row">
+        <div class="col5 innerHeader">
+          <p>Posted on:</p>
+        </div>
+      </div>
+
+      <% if not get_post_link(@post, @twitter_posts, 'twitter').blank? %>
+          <div class="row">
+            <%= link_to "#{get_post_link(@post, @twitter_posts, 'twitter').link_to_post}", class: "col6 b", target: "_blank" do %>
+                Twitter &rarr; 
+            <% end %>
+          </div>
+      <% end %>
+
+      <% if not get_post_link(@post, @facebook_posts, 'facebook').blank? %>
+          <div class="row">
+            <%= link_to "#{get_post_link(@post, @facebook_posts, 'facebook').link_to_post}", class: "col6 b", target: "_blank" do %>
+                Facebook &rarr;
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+
+<% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        window.initPostModal()
+    })
+</script>

@@ -1,0 +1,67 @@
+<% provide(:title, "Delete Account") %>
+
+<br/>
+<section class="wrapper page_col singleWide">
+  <header>
+    <h1>Delete Your Account</h1>
+  </header>
+
+  <%= form_tag(url_for(:controller => :users, :action => :destroy), :method => :delete) do %>
+      <p class='subHeader'>1. In order to delete your account, we need to verify your password.</p>
+      <%= password_field_tag :password, nil, :placeholder => 'Password', class: "input-xlarge" %>
+      <span id="passwordEntryNotification"></span>
+
+      <p class='subHeader'>2. By clicking Delete My Account, you are acknowledging that the below statements are
+        true:</p><br/>
+      <ul id="deleteConsequenceList">
+        <li>All of your posts will be deleted and become unsearchable, undiscoverable and unviewable by all other
+          customers.
+        </li>
+        <li>You will no longer be able to create new posts or view other customer posts.</li>
+        <li>Tweets created on your Twitter account will not be removed.</li>
+        <li>Some information will be retained for account reactivation should you change your mind.</li>
+        <li>You will receive a confirmation email with a reactivation link that can be used at any time.</li>
+        <li>You will be immidiately signed out after we have finished deleting your account.</li>
+      </ul>
+
+      <br/>
+      <p class='subHeader'>3. We will read what you have to say. So, speak your mind, be brutally honest and let us know
+        why are you deleting your account?</p>
+      <%= text_area_tag :reason, @reason, :placeholder => 'Example: "I dislike the color blue."', class: "input-xlarge", :style => 'width:100%;' %>
+
+      <div class="row">
+        <div class="col6">
+          <%= button_tag "Delete My Account", :type => "submit", class: "btn btn_red", :id => 'delete_account', :title => "Do you acknowledge everything on this page and still want to delete your account?" %>
+          <%= link_to "Cancel", edit_user_path(current_user), :class => "btn" %>
+        </div>
+      </div>
+  <% end %>
+
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#password').keyup(function () {
+            $("#passwordEntryNotification").html('')
+        });
+
+        $('#delete_account').easyconfirm({locale:{ title:'Confirm Account Deletion', button:['No', 'Yes - Delete My Account']}});
+        $('#delete_account').click(function (e) {
+            e.preventDefault();
+            if ($('#password').val().length > 0) {
+                $('form').submit();
+            } else {
+                $("#passwordEntryNotification").html("<span id=\"error_explanation\"><ul><li>* You must first enter your password.</li></ul></span>");
+            }
+        });
+    })
+</script>
+
+<style type="text/css">
+    ul#deleteConsequenceList {
+        list-style: disc inside none;
+        font-size: 1.6em;
+        line-height: 1.2em;
+        padding-left: 20px;
+    }
+</style>

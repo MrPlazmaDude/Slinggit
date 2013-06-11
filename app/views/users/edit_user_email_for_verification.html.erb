@@ -1,0 +1,25 @@
+<% provide(:title, "Request Verification Email") %>
+<section id="emailVerificationWrapper" class="wrapper">
+	<div class="row">
+		<header>
+			<h1>Request new verification email</h1>
+		</header>
+	</div>
+	<div class="row white_well">
+		<div class="col3">
+		<%= form_for current_user, :url => {:action => "update_email_and_send_verification"} do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.hidden_field :id %>
+
+            <fieldset class="row">
+				<p><strong><%= current_user.name %></strong>, please make sure that this is the correct email address prior to requesting a new verification email.</p>
+				<%= f.text_field :email, class: "col6 form_singleLine" %>
+			</fieldset>
+
+            <%= f.submit "Send Email", class: "btn_ltGrey" %>
+		<% end %>
+	</div>
+	</div>
+
+</section>

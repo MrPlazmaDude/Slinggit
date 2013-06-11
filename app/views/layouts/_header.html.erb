@@ -1,0 +1,123 @@
+<header id="mainHeader" class="row">
+  <div class="wrapper">
+<div class="row">
+<!-- LOGO -->
+    <hgroup class="col2 pull_left">
+      <h1>Slinggit</h1>
+
+      <!--[if lt IE 9]>
+		<%= link_to "", {:action => 'home', :controller => 'static_pages'}, class: 'row ie_logo_hack' %>
+      <![endif]-->
+      <!--[if gt IE 9]><!-->
+		<%= link_to image_tag('logos/slinggit_logotype_blue_417x162.png', width: '100%', height: 'auto', title: 'Slinggit Logo blue', alt: 'Slinggit Logo'), {:action => 'home', :controller => 'static_pages'}, class: 'row' %>
+	  <!--<![endif]-->
+      <!-- <small>beta</small> -->
+    </hgroup>
+<!-- END LOGO -->
+
+      <% if signed_in? %>
+
+<!-- NAV GROUP -->
+    <nav class="col4 pull_left">
+<!-- NAV BUTTONS WRAPPER -->
+              <div class="row">
+<!-- POSTS -->	
+				<%= link_to current_user, class: "col2 pull_left #{'active' if current_page?(current_user) || current_page?(users_watching_path) || current_page?(users_archived_path)}" do %>
+					<span class="ss-home"></span>
+					Home
+				<% end %>
+<!-- END POSTS -->
+
+<!-- MESSAGES -->
+				<%= link_to messages_path, class: "col2 pull_left #{'active' if current_page?(messages_path)}" do %>
+					<span class="ss-inbox"></span>
+					<%= "Messages#{(count = Message.count(:conditions => ['recipient_user_id = ? AND status = ?', current_user.id, STATUS_UNREAD])) > 0 ? ': ' + count.to_s + '' : ''}" %>
+				<% end %>
+<!-- END MESSAGES -->
+
+<!-- SEARCH ICON -->
+				<div class="col2 pull_left quickSearchLabel">
+					<span class="ss-search"></span>
+					<span>Search</span>
+				</div>
+<!-- END SEARCH ICON -->
+
+<!-- DROP DOWN -->
+				<div id="accountDropDown" class="dropdown col2 pull_left" %>
+					<div class="dropdown-toggle" data-toggle="dropdown">
+						<span class="ss-settings"></span>
+						Settings
+					</div>
+					
+					<ul class="nav_dropDown dropdown-menu">	
+						<li class="<%= 'active' if current_page?(edit_user_path(current_user)) %>">
+            				<%= link_to "Profile", edit_user_path(current_user) %>
+            			</li>
+                    	
+						<li class="<%= 'active' if current_page?(networks_path) %>">
+							<%= link_to "Social Networks", networks_path %>
+            			</li>
+
+            			<li>
+                			<%= link_to "Email Preferences", :action => 'email_preferences', :controller => 'users' %>
+              			</li>
+                    	
+						<li>
+               				<%= link_to "Sign Out", signout_path, method: "delete" %>
+            			</li>
+
+						<% if current_user.is_admin? %>
+							<li class="<%= 'active' if current_page?(users_path) %>">
+							<%= link_to "Admin", admin_dashboard_path %>
+							</li>
+						<% end %>
+                  	</ul>
+                </div>
+<!-- END DROP DOWN -->
+              </div>
+<!-- END BUTTON WRAPPER -->
+    </nav>
+<!-- END RIGHT NAV GROUP -->
+
+<!-- ELSE IF signed_in? -->
+      <% else %>
+
+        <div class="col4 pull_left" id="header_signIn">
+              <div class="row">
+				<%= link_to signin_path, class: "col2 pull_left" do%>
+					<span class="ss-user"></span>
+					Sign In
+				<% end %>
+				<!-- SEARCH ICON -->
+				<div class="col2 pull_right quickSearchLabel">
+					<span class="ss-search"></span>
+					<span>Search</span>
+				</div>
+				<!-- END SEARCH ICON -->
+			</div>
+        </div>
+      <% end %>
+<!-- END ELSE IF -->
+  </div>
+<!-- END ROW WRAPPER -->
+
+<!-- QUICK SEARCH -->
+      <div class="hideSearch row" id="quickSearchWrapper">
+        <div class="col3 pull_right">
+			<span class="ss-search pull_left"></span>
+          <%= text_field_tag :quickSearch, nil, :placeholder => 'Quick Search', :name => 'quickSearch', :size => 'auto' %>
+        </div>
+      </div>
+<!-- END QUICK SEARCH -->
+	</div>
+</header>
+<!-- END HEADER -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.BTN_nav_dropDown').dropdown()
+        window.quickSearchView()
+		window.initiHeaderSearch()
+    });
+
+</script>

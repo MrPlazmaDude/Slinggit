@@ -1,0 +1,29 @@
+#emailVerificationWrapper {
+	.col3 {
+		strong {
+			font-weight: 600;
+		}
+		p {
+			font-size: $font-size * .8;
+		}
+	}
+}
+
+.wrapper_newUser {
+	.form_hiddenFields {
+		input[type="button"] {
+			
+		}
+	}
+	#signUpStartOverLink {
+		margin-top: $leading;
+		font-size: $font-size * .75;
+		line-height: $leading;
+		text-align: right;
+		color: $main-blue;
+	}
+	#emailSuggestion {
+		float: left;
+		position: inherit;
+	}
+}

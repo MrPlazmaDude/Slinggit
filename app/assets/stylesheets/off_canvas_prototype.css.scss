@@ -1,0 +1,12 @@
+.js [role="navigation"] {	
+	margin-left: -100%;
+	float: left;
+}
+.js [role="main"] {
+	margin-left: 0 !important;
+	float: left !important;
+}
+.js [role="complementary"] {	
+	margin-right: -200% !important;
+	float: left !important;		
+}

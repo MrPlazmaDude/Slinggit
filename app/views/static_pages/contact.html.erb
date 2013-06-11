@@ -1,0 +1,38 @@
+<% provide(:title, 'Contact') %>
+<section class="wrapper contactUs">
+
+  
+
+  <article class="row main">
+	<header class="row">
+	    <h1 class="bottom_border">Contact</h1>
+	  </header>
+    <p>Thank you for your interest in Slinggit. We look forward to hearing from you.</p>
+
+    <%= form_tag(url_for(:controller => :static_pages, :action => :contact), :class => "col4 offset1 grey_well") do %>
+
+        <fieldset class="row">
+          <label class="col3 pull_left">Name:</label>
+          <%= text_field_tag :name, @name, :class => "col6 pull_left", :placeholder => 'Name' %>
+        </fieldset>
+
+        <% if not signed_in? %>
+            <fieldset class="row">
+              <label class="col3 pull_left">Email Address:</label>
+              <%= email_field_tag :email, @email, :class => "col6 pull_left", :placeholder => 'Email' %>
+            </fieldset>
+        <% end %>
+
+        <fieldset class="row">
+          <label class="col3 pull_left">Message:</label>
+          <%= text_area_tag :message, @message, :class => "col6 pull_left", :placeholder => 'Message' %>
+        </fieldset>
+
+        <fieldset class="row">
+          <button type="submit" class="col2 btn_green">Send</button>
+        </fieldset>
+
+    <% end %>
+
+  </article>
+</section>

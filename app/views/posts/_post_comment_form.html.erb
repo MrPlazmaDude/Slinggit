@@ -1,0 +1,37 @@
+<% if @post.open? %>
+
+  <% if not current_user.is_suspended? %>
+
+    <%= form_for([@post, @post.comments.build]) do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <fieldset>
+        <div class="control group row">
+          <div class="controls">
+            <%= f.text_area :body, rows: "3", :counterMax => 300 %>
+          </div>  
+        </div>
+
+        <div class="form-actions row">
+            <%= f.button "Comment", id: "submitComment", type: "submit", class: "ss-chat col2 btn_ltGrey" %>
+        </div>
+
+      </fieldset>
+
+      <% end %><!-- form end -->
+
+  <% else %>
+
+    <div id="notice_explanation_bubble" class="row">
+      You are currently in time out.  As a result of this, you cannot comment on posts.
+    </div>  
+
+  <% end %>    
+
+<% end %>  
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      window.commentInputValidator()
+  })
+</script>

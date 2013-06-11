@@ -1,0 +1,115 @@
+<div id="postDetails" class="col6 <%= @post.open_class %>">
+
+  <div class="row contentHeader">
+    <div class="innerHeader row">
+      <header class="col3 pull_left">
+        <% if signed_in? and @post.user_id == current_user.id %>
+            <h1 class="editable" edit_field='hashtag_prefix' id='editable_hashtag_prefix'><%= @post.hashtag_prefix %></h1> 
+        <% else %>
+            <h1 edit_field='hashtag_prefix'><%= @post.hashtag_prefix %></h1>
+        <% end %>
+      </header>
+      <p id="postStatus" class="col3 <%= @post.open? %> pull_right">
+        <% if @post.open? %>
+            Open
+        <% else %>
+            Closed
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <!-- contentHeader End-->
+
+  <div id="postDetailInner" class="row">
+
+    <div id="postImageWrapper" class="col3 pull_right">
+
+      <div id="addPhotoControlGroup">
+        <!-- if false to prevent this until we want to implement it-->
+        <% if false and not @post.has_photo? and signed_in? and @post.user_id == current_user.id %>
+            <%= form_for(@additional_photo, :url => url_for(:controller => :additional_photos, :action => :add), :id => 'addImageForm') do |f| %>
+                <%= f.file_field :photo, style: "position:absolute; top:-999px; left:-999px" %>
+                <%= link_to image_tag('plus_button.png'), '#', :class => 'pull_right', :id => "photoSelect" %>
+                <%= hidden_field_tag :post_id, params[:id] %>
+            <% end %>
+        <% end %>
+      </div>
+
+      <% if @post.photo_file_name.blank? %>
+          <div id="placeholderWrapper">
+            <%= image_tag "noPhoto_300x300.png", :id => "placeholderImg", :height => "auto", :width => "100%" %>
+            <% if current_user?(@post.user) and @post.open? %>
+                <%= form_for @post do |f| %>
+                    <fieldset id="photoControlGroup" class="col6 pull_left">
+                      <div class="controls thumbnail pull_left">
+                        <!--[if lt IE 9]>
+                    <%= f.file_field :photo %>
+                  <![endif]-->
+                        <!--[if gt IE 9]><!-->
+                        <%= f.file_field :photo, style: "position:absolute; top:-999px; left:-999px" %>
+                        <a href="#" id="fileSelect" class="pull_left">Add photo</a>
+                        <!--<![endif]-->
+                      </div>
+                    </fieldset>
+                <% end %>
+            <% end %>
+          </div>
+
+      <% else %>
+          <%= image_tag @post.photo.url(:medium), :class => "img_border", :height => "auto", :width => "100%", :id => 'post_mainImage' %>
+      <% end %>
+
+    </div>
+    <!-- postImageWrapper End -->
+
+    <div id="postInfo" class="col3 pull_left">
+      <dl>
+        <div class="row">
+          <dt class="col2 pull_left">Location</dt>
+          <% if signed_in? and @post.user_id == current_user.id %>
+              <dd class="col3 pull_right editable" edit_field="location" id="editable_location"><%= @post.location %></dd>
+          <% else %>
+              <dd class="col3 pull_right" edit_field="location"><%= @post.location %></dd>
+          <% end %>
+        </div>
+        <div class="row">
+          <dt class="col2 pull_left">Price</dt>
+          <% if signed_in? and @post.user_id == current_user.id %>
+              <dd class="col3 pull_right editable" edit_field="price" id="editable_price">$<%= number_with_delimiter(@post.price, :delimiter => ',') %></dd>
+          <% else %>
+              <dd class="col3 pull_right" edit_field="price">$<%= number_with_delimiter(@post.price, :delimiter => ',') %></dd>
+          <% end %>
+        </div>
+        <div class="row">
+          <dt class="col2 pull_left">Interested</dt>
+          <dd class="col3 pull_right"><%= @post.interested %></dd>
+        </div>
+      </dl>
+    </div>
+    <!-- postInfo End -->
+
+    <div id="postDescription" class="col3">
+      <p class="col6 editable" edit_field="content" id="editable_content"><%= @post.content %></p>
+      <% if signed_in? && !current_user?(@post.user) %>
+          <div class="row">
+            <% if !current_user.post_in_watch_list?(@post.id) %>
+                <%= link_to "Watch", {:controller => :watchedposts, :action => :interested, :post => @post.id}, class: "col2 btn_ltGrey ss-view" %>
+            <% else %>
+                <%= link_to "Unwatch", {:controller => :watchedposts, :action => :uninterested, :post => @post.id}, class: "col2 btn_ltGrey ss-ban" %>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+    <!-- postDescription End -->
+
+  </div>
+  <!-- postDetailInner end -->
+
+  <div id='post_imagePort'></div>
+</div>
+
+<script type='text/javascript'>
+    $(document).ready(function () {
+        window.startPostZoomer()
+    })
+</script>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p>Welcome to slinggit.com, <%= @user.name %></p>
+
+<p>
+  Before you can get started posting, please verify your email address by clicking the link below:
+</p>
+
+<p>
+  <a href="<%= @url %>"><%= @url %></a>
+</p>
+
+<p>Thanks for joining and have a great day!</p>
+
+<p>Sincerely,</p>
+
+<p>Your friends at Slinggit</p>
+<%= render 'user_mailer/footer' %>
+</body>
+</html>

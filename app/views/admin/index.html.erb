@@ -1,0 +1,28 @@
+<% provide(:title, 'Admin') %>
+<div class="wrapper">
+  <div class="page_col twoCol">
+    <header>
+      <h1>Admin Tools</h1>
+    </header>
+    <div id='adminIndexList'>
+      <h3>View:</h3>
+      <ul class="adminList">
+        <li><a href="/admin/view_images">Uploaded Images</a></li>
+        <li><a href="<%= admin_users_path  %>">Users</a></li>
+        <li><a href="/admin/view_invitations">Invitations</a></li>
+      </ul>
+      <h3>Problem Reports:</h3>
+      <ul class="adminList">
+        <li><a href="/admin/problem_reports">View Exceptions</a></li>
+      </ul>
+      <!-- TODO IMPLEMENT -->
+      <!--<ul class="adminList">-->
+      <!--<li><a href="/admin/view_users">View/Search Users</a></li>-->
+      <!--<li><a href="#">View/Search Posts</a></li>-->
+      <!--<li><a href="#">Manage Admin Accounts</a></li>-->
+      <!--<li><a href="#">Manage User Limitations</a></li>-->
+      <!--<li><a href="#">Manage Invitations</a></li>-->
+      <!--</ul>-->
+    </div>
+  </div>
+</div>

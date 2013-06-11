@@ -1,0 +1,13 @@
+<div id="closedPost">
+  <div class="row contentHeader">
+    <div class="col5 innerHeader">
+      <h4>Post Closed</h4>
+    </div>
+  </div>
+  <div class="row">
+    <p>Another item successfully sold on slinggit!</p>
+  </div>
+  <div id="findSimilar" class="row">
+    <%= link_to "Find Similar Items", {:controller => :posts, :action => :results, :id => @post.hashtag_prefix}, class: "col4 btn_ltGrey" %>
+  </div>
+</div>	

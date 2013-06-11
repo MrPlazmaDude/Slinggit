@@ -1,0 +1,115 @@
+<section class="row wrapper adminSection">
+  <div class="white_well col2 pull_right">
+    <div class="row admin_controlls">
+      <% if current_user.is_admin? && !current_user?(@user) && @user.is_active? %>
+        <%= link_to "Ban", {:controller => :admin, :action => :set_user_status, :id => @user.id, :status => "BAN"}, class: "btn_red col6 pull_left", confirm: "Ban: You sure?" %>
+        <%= link_to "Suspend", {:controller => :admin, :action => :set_user_status, :id => @user.id, :status => "SUS"}, class: "btn_yellow col6 .offset1 pull_left", confirm: "Suspend: You sure?" %>
+
+      <% elsif current_user.is_admin? && !current_user?(@user) && @user.is_suspended? %>
+        <%= link_to "Reenable", {:controller => :admin, :action => :set_user_status, :id => @user.id, :status => "ACT"}, class: "btn_green col6 pull_left", confirm: "Re-enable: You sure?" %>
+        <%= link_to "Ban", {:controller => :admin, :action => :set_user_status, :id => @user.id, :status => "BAN"}, class: "btn_red col6 .offset1 pull_left", confirm: "Ban: You sure?" %>
+
+      <% elsif current_user.is_admin? && !current_user?(@user) && @user.is_banned? %>
+        <%= link_to "Reenable", {:controller => :admin, :action => :set_user_status, :id => @user.id, :status => "ACT"}, class: "btn_green col6 pull_left", confirm: "Re-enable: You sure?" %>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="white_well col4 pull_left">
+    <header class="row">
+      <div class="col2 pull_left">
+        <%= image_tag @user.profile_photo_url, style: "width: 80px;" %>
+      </div>
+      <div class="col4 pull_left">
+        <h1>User (<%= @user.name %>)</h1>
+        <h3>Status (<%= @user.status %>)</h3>
+        <h4>User Profile Page: <%= link_to user_path(@user.name), user_path(@user.name) %></h4>
+      </div>
+    </header>
+
+    <div class="row">
+
+      <h3>Posts (<%= @userposts.count %>) </h3>
+
+      <div class="row">
+      <%= will_paginate @userposts%>
+      </div>
+
+        <section>
+          <table class="admin_table table_bordered table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Item</th>
+                <th>Photo</th>
+                <th>Status</th>
+                <th>Open</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @userposts.each do |post| %>
+                <tr>
+                  <td><%= post.id %></td>
+                  <td><%= link_to post.hashtag_prefix, {:controller => :admin, :action => :view_post, :id => post.id} %></td>
+                  <td>
+                    <% if post.photo_file_name.blank? %>
+                      <%= image_tag "noPhoto_80x80.png" %>
+                    <% else %>
+                      <%= image_tag post.photo.url(:search), :class => "img_border" %>
+                    <% end %>
+                  </td>
+                  <td><%= post.status %></td>
+                  <td><%= post.open? %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="row">
+        <%= will_paginate @userposts%>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+      <h3>Comments (<%= @usercomments.count %>) </h3>
+
+      <div class="row">
+      <%= will_paginate @usercomments%>
+      </div>
+
+      <section>
+        <table class="admin_table table_bordered table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Content</th>
+              <th>Post</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @usercomments.each do |comment| %>
+              <tr>
+                <td><%= comment.id %></td>
+                <td><%= link_to comment.body, {:controller => :admin, :action => :view_comment, :id => comment.id} %></td>
+                <td><%= link_to comment.post.hashtag_prefix, {:controller => :admin, :action => :view_post, :id => comment.post.id} %></td>
+                <td><%= comment.status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="row">
+      <%= will_paginate @usercomments%>
+      </div>
+    </div>
+  </div>
+
+</section>

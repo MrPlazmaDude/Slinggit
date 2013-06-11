@@ -1,0 +1,35 @@
+// *  FILENAME: static/about
+ 
+.aboutUs {
+	article {
+		p {
+			margin-bottom: $small-font;
+		}
+	}
+ 	aside {
+		header h1 {
+			font-size: $font-size;
+		}
+		div.row {
+			margin: .875em auto;
+			a {
+				color: $main-blue;
+				font-size: $small-font;
+				text-indent: $big-font;
+				margin:($font-size * .5) 0 0 ($font-size * .5);
+				padding: .2em 0 0 .2em;
+			}
+		}
+		figcaption {
+			font-size: $small-font;
+			padding-left: $small-font;
+			font-weight: 400;
+			span {
+				display: block;
+				font-weight: 300;
+				//font-size: $body-font;
+				//margin-top: $small-font;
+			}
+		}
+	}
+}

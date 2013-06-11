@@ -1,0 +1,6 @@
+<h1>Reauthorize <%= @api_account.api_source.titleize %> Session</h1>
+<legend>We attempted to post to your "<%= @api_account.user_name %>" <%= @api_account.api_source.titleize %> account and it failed.  Please log into that account to reauthorize and post. </legend>
+
+<%= form_tag('/create_reauthorization') do %>
+    <%= image_submit_tag("sign-in-with-twitter.png") %>
+<% end %>

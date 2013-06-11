@@ -1,0 +1,25 @@
+Hi <%= @recipient_user.name %>,
+===============================================
+
+<%- if @message_object.source == 'post' %>
+You received a new message in your Slinggit account regarding a post.
+<%- else %>
+You received a new message in your Slinggit account.
+<%- end %>
+
+Message contents:
+
+-----------
+<%= @message_object.body %>
+-----------
+
+To view more information about this message, please visit your Slinggit inbox at <%= url_for :controller => :messages, :only_path => false, :host => HOSTURL, :protocol => "https://" %>
+
+Sincerely,
+
+Your friends at Slinggit
+
+
+
+
+

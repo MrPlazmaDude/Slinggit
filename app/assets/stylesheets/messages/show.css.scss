@@ -1,0 +1,40 @@
+.message {
+  article {
+    &> .row {
+      padding: ($font-size * .2) 0;
+      margin: ($font-size * .2) auto;
+      width: 98%;
+      &:first-child {
+        margin-top: -($font-size * .5);
+      }
+    }
+    small, dl {
+      font-size: ($font-size * .8);
+    }
+    dl {
+      border-bottom: 1px solid $lt-grey;
+    }
+  }
+}
+
+.link_to_post{
+  margin-top: 4px;
+  margin-left: 8px;
+  color: darken($main-blue, 20%);
+}
+
+.subject_row{
+  padding-bottom: 6px;
+  border-bottom: 1px solid $lt-grey;
+}
+
+.message_row{
+  .title{
+    margin-top: 18px;
+    padding-left: 6px;
+    margin-bottom: 8px;
+  }
+  .timestamp{
+    margin-top: 24px;
+  }
+}

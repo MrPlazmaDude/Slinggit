@@ -1,0 +1,118 @@
+  <%= form_for @post do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <!-- item name -->
+      <fieldset class="row">
+
+        <%= f.label :hashtag_prefix, "Your item", class: "col6", for: "post_hashtag_prefix" %>
+
+        <div class="col6">
+          <%= f.text_field :hashtag_prefix, class: "col4 pull_left", placeholder: "shortAndSweet", maxLength: "15", counterMax: "15" %>
+          <span class="pull_left add_on">forsale</span>
+          <small class="row">For example, bike, snowboard, broncostickets, car, etc.</small>
+        </div>
+
+      </fieldset>
+      <!-- end item name -->
+
+
+      <!-- price and location -->
+      <div class="row">
+
+        <fieldset class="col3 pull_left">
+          <%= f.label :price, class: "row", for: "post_price" %>
+          <div class="row">
+            <%= f.text_field :price, class: "col4 pull_left", id: "post_price", placeholder: "$", maxLength: "6"  %>
+            <span class="pull_left add_on">.00</span>
+          </div>
+        </fieldset>
+
+        <fieldset class="col3 pull_right">
+          <%= f.label :location, "Location", class: "row", for: "post_hashtag_prefix" %>
+          <%= f.text_field :location, class: "row", placeholder: "City, State, or Zip", maxLength: "16" %>
+        </fieldset>
+
+      </div>
+      <!-- end price and location  -->
+
+
+      <!-- description -->
+      <fieldset class="row">
+
+        <%= f.label :content, "Quick description", class: "col3", for: "post_content" %>
+        <%= f.text_area :content, class: "row", rows: "3", counterMax: "300", placeholder: "Description with keywords." %>
+
+      </fieldset>
+      <!-- end description -->
+
+
+      <!-- photo and twitter -->
+      <fieldset class="row grey_well">
+
+        <div id="photoControlGroup" class="col3 pull_left">
+          <%= f.label :photo, "Item Photo (optional):", for: "post_photo", class: "row top_border bottom_border" %>
+          <div class="controls thumbnail pull_left row">
+            <!--[if lt IE 9]>
+              <%= f.file_field :photo %>
+            <![endif]-->
+            <!--[if gt IE 9]><!-->
+              <%= f.file_field :photo, style: "position:absolute; top:-999px; left:-999px" %>
+              <a href="#" id="fileSelect" class="col6">
+                <span class="ss-camera col2 offset2"></span>
+                <span>Select a photo</span>
+              </a>
+            <!--<![endif]-->
+          </div>
+        </div>
+          <div class="col3 pull_right postSocialAccount">
+        		<header class="row top_border bottom_border">Post to:</header>
+        			<fieldset class="row">
+        				<%= check_box_tag "selected_networks[#{@slinggit_account_id}]", 'post', true, class: "pull_left" %>
+        				<label for="selected_networks[#{@slinggit_account_id}]" class="col5 pull_left">
+                  <span class="ss-twitter ss-social"></span>
+                   Slinggit
+                 </label>
+         			</fieldset>
+              
+            <% if not @twitter_accounts.blank? %>
+           		<% @twitter_accounts.each do |twitter_account| %>
+           			<fieldset class="row">
+           				<%= check_box_tag "selected_networks[#{twitter_account.id}]", 'post', true, class: "pull_left" %>
+           				<label for="selected_networks[<%= twitter_account.id %>]" class="col5 pull_left">
+                     <span class="ss-twitter ss-social"></span>
+                     <%= twitter_account.user_name %>
+                   </label>
+           			</fieldset>
+           		<% end %>
+            <% end %>
+
+            <% if not @facebook_accounts.blank? %>
+           		<% @facebook_accounts.each do |facebook_account| %>
+             			<fieldset class="row">
+            				<%= check_box_tag "selected_networks[#{facebook_account.id}]", 'post', true, class: "pull_left" %>
+             				<label for="selected_networks[<%= facebook_account.id %>]" class="col5 pull_left">
+                     <span class="ss-facebook ss-social"></span>
+                     <%= facebook_account.user_name %>
+                    </label>
+           			</fieldset>
+           		<% end %>
+            <% end %>
+
+         	</div>
+      </fieldset>
+      <!-- end photo and twitter -->
+
+
+      <fieldset class="row">
+        <% if @cant_post %>
+            <p id="#notice_explanation_bubble">You have reached your 10 post limit.</p>
+
+            <p>Please <%= link_to "contact customer service", contact_path %> if you wish to increase this limit.</p>
+            <%= f.button "Post Item", type: "submit", class: "col3 btn", id: "submitNewPost", disabled: "disabled" %>
+        <% else %>
+            <%= f.button "Post Item", type: "submit", class: "col3 btn_green", id: "submitNewPost" %>
+            <%= link_to "Cancel", user_path(current_user), class: "col2 pull_right btn_ltGrey" %>
+        <% end %>
+      </fieldset>
+  <% end %>
+  

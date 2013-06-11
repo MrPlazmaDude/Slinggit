@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<p>Dear <%= @user.name %>,</p>
+<p>
+  This email is to inform you that your account has been suspended for the following reason:
+  <ul>
+    <li><%= @violation_reason %></li>
+  </ul>
+</p>
+<p>
+  We take pride to ensure that Slinggit stays a safe and clean environment in order to protect our valued customers.
+</p>
+<p>If you feel you have received this email in error, please contact customer service immediately.</p>
+<p>Sincerely,</p>
+<p>Your friends at Slinggit</p>
+</body>
+</html>

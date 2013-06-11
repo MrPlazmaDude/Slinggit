@@ -1,0 +1,48 @@
+<% provide(:title, "Sign in") %>
+
+<section id="newSessionWrapper" class="wrapper white_well">
+
+  <header class="row">
+    <h1 class="bottom_border">Sign in</h1>
+  </header>
+
+  <div class ="row">
+  	<div class="col3 well">
+    <%= form_tag(sessions_path, :novalidate => 'novalidate') do |f| %>
+
+        <fieldset class="row">
+          <%= label_tag :email, 'Email or Username', for: "session_email", class: "col6" %>
+          <%= email_field_tag :email, nil, class: "col6", :value => @email || params[:email], placeholder: "Email" %>
+        </fieldset>
+
+        <fieldset class="row">
+          <%= label_tag :password, 'Password', for: "session_password", class: "col6" %>
+          <%= password_field_tag :password, nil, class: "col6", placeholder: "Password" %>
+        </fieldset>
+
+        <fieldset class="row">
+          <%= button_tag "Sign in", class: "col3 btn_green pull_left" %>
+          <%= link_to "Forgot your password?", {:controller => :users, :action => :password_reset}, class: "col3 pull_right", :id => 'forgot_password' %>
+        </fieldset>
+
+    	<% end %>
+      <div class="row termsOfService">
+        <small>By signing into Slinggit. You agree to our <%= link_to "Terms of Service", terms_of_service_path %>.</small>
+      </div>
+      <div id="orSignupActions" class="row">
+        <small>New User? <%= link_to "Sign Up", signup_path, class: "btn_blue" %></small>
+      </div>
+  	</div>
+  </div>
+
+  
+
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        <% if not params[:email].blank? %>
+        $('#session_password').focus();
+        <% end %>
+    });
+</script>

@@ -1,0 +1,35 @@
+<%= provide(:title, 'Request Invitation') %>
+
+<section class="wrapper invite_wrapper">
+		
+		<article class="row white_well">
+			<div class="col2 pull_right">
+			<header class="row">
+				<h1 class="headline bottom_border">Welcome to Slinggit.</h2>
+			</header>
+			
+			<div class="row">
+				<h2 class="col6">The fastest way to connect with your social networks to git the things you want and sling the things you don&rsquo;t.</h2>
+					<div class="col6 grey_well">
+						<%= form_tag do |f| %>
+								<p class="row">Be one of the first to Slinggit!</p>
+					          		<%= label_tag :email, "Email:", for: "invitation_email", class: "row" %>
+										<div class="row">
+					          				<%= email_field_tag :email, @email, placeholder: "Email", class: "row", size: "30" %>
+										</div>
+										<div class="row">
+						  					<%= button_tag "Request Invitation", class: "btn btn_green col4 offset1", :type => 'submit' %>
+										</div>
+						<% end %>
+					</div>
+			</div>
+			</div>
+			
+			<div class="col4 pull_left">
+				<div class="row">
+					<%= image_tag "heroimages/hero_phone_571x354.jpg", width: "100%", height: "auto", title: "Slinggit on your mobile device", alt: "Hero Phone 571x446" %>
+				</div>
+			</div>
+		</article>
+		
+</section>

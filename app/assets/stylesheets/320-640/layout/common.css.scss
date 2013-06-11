@@ -1,0 +1,65 @@
+// *  FILENAME: 320-640/layout/common
+
+.wrapper {
+	width: 96%;
+	max-width: 640px;
+	padding: 0;
+}
+//.page_contentContainer {
+	//padding-top: 7.8em;
+//	margin-top: 0;
+//	padding-top: 4.8em;
+//}
+.page_contentContainer header:first-child {
+	//margin: 0 0 $font-size 0;
+	//font-size: $font-size * .5;
+	//text-align: center;
+}
+.page_contentContainer header p {
+	//line-height: 1em;
+	//margin: -.975em 0 0 .045em;
+}
+.page_contentContainer .posts article:last-child {
+	display: none;
+}
+.page_contentContainer .posts article:first-child {
+	float: left;
+	width: 100%;
+}
+.page_contentContainer .form_initialFields input[type="text"], .page_contentContainer .form_initialFields input[type="email"], .page_contentContainer .form_initialFields input[type="password"], .page_contentContainer .form_hiddenFields input[type="text"], .page_contentContainer .form_hiddenFields input[type="email"], .page_contentContainer .form_hiddenFields input[type="password"] {
+	width: 95%;
+	float: left;
+}
+//	.btn {
+//	display: block;
+//	width: 100%;
+//	text-align: center;
+//	padding: .6em .4em;
+//	font-size: $font-size * 1.2;
+//	font-weight: bold;
+//	text-shadow: $txt-shdw;
+//}
+.main, .secondary {
+	@include colNoFloatClearFix;
+}
+.secondary{
+	padding-right: 0px;
+	&:last-child {
+		margin-top: $body-font;
+	}
+}
+
+// Adjustments to font
+//.btn_ltGrey{
+//	font-weight: 400;
+//	text-shadow: none;
+//}
+
+//.offset1{
+//	margin-left: 0;
+//}
+
+// HEADER HIDE
+.headerHideOnFocus{
+	display: none;
+}

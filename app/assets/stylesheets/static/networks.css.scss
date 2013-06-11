@@ -1,0 +1,57 @@
+// networks page styles
+.accounts {
+	> .contentHeader{
+		border-bottom: 1px solid $lt-grey;
+	}
+	> .col4, > .col2 {
+		margin-top: 10px;
+	}
+	> .col4 {
+		padding: 20px;
+		> .row > ul {
+			/*li:nth-of-type(odd) {
+			 background: lighten($main-green, 30%);
+			padding: $font-size 0;
+			}*/
+			li:nth-of-type(1) {
+				background: none;
+				border-bottom: 1px solid $lt-grey;
+				padding-bottom: 5px;
+			}
+		}
+	}
+	> .col2 {
+		padding-left: 10px;
+	}
+	article {
+		ul {
+			font-size: ($font-size * .75);
+			li {
+				margin: ($font-size * 1.25) auto;
+				&:first-child {
+					font-weight: bold;
+					margin: ($font-size * .5) auto;
+				}
+			}
+		}
+		ul.networks_metaData {
+			display: none;
+		}
+		ul.col1 {
+			width: 33.3333333%;
+		}
+	}
+	.twitIconSmall {
+		margin: -24px 0 17px 32px;
+	}
+	#account-actions > a:link {
+		font-size: .8em;
+		letter-spacing: .05em;
+		text-transform: uppercase;
+		font-weight: bold;
+		&:last-child {
+			width: 75%;
+		}
+	}
+}
+// end

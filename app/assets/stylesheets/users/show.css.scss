@@ -1,0 +1,88 @@
+/*
+ *  FILENAME: users/show
+ */
+
+#createPostAction {
+	p{
+		padding-bottom: 15px;
+		strong{
+			font-weight: 600;
+		}
+	}
+	.btn_green {
+		
+	}
+
+	p.notice_explanation_bubble{
+		margin-top: 1em !important;
+		width: 100%;
+		padding-top: 8px;
+		padding-bottom: 8px;
+		margin-top: 0;
+		margin-bottom: 16px;
+		border: 1px solid lighten($main-yellow, 20%);
+	}
+}
+
+#userPosts, #postSearchResults, #msgArticles {
+	.title_row {
+		margin: 0;
+		margin-bottom: 10px;
+		header{
+			padding-bottom: 10px;
+			
+	border-bottom: 1px solid $lt-grey;
+		}
+	}
+	.title_row > .col6 > .grey_well{
+		margin-bottom: 20px;
+	}
+
+}// end #userPosts, #postSearchResults
+
+
+#postsFilters{
+	margin-bottom: 5px;
+	padding-bottom: 7px;
+	a{
+		display: inline-block;
+		padding: 10px 10px 10px 10px;
+		text-decoration: none;
+		font-size: $font-size * .9;
+		color: $dk-grey;
+		border: 1px solid transparent;
+		&:hover{
+			background-color: lighten($lt-grey, 12%);
+			border: 1px solid lighten($lt-grey, 8%);
+			@include rounded-corners(3px);
+		}
+	}
+	a.active{
+		background-color: lighten($lt-grey, 10%);
+		color: $dk-grey;
+		border: 1px solid lighten($lt-grey, 5%);
+		@include rounded-corners(3px);
+	}
+}
+
+#add_more_networks{
+	.col3{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+
+.user-name{
+	font-size: $big-font;
+}
+
+.unverified_user{
+	padding-top: 10px;
+	border-bottom: 1px solid $lt-grey;
+	.notice{
+		text-decoration: underline;
+	}
+	p{
+		padding: 0px 10px 10px 10px;
+	}
+}

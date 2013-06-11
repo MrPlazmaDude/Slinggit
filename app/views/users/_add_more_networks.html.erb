@@ -1,0 +1,16 @@
+<div id="add_more_networks" class="row grey_well">
+	<p>Social networks provide the platform you need to broaden your reach to potential buyers and significantly shorten the sales cycle.</p>
+
+	<div class="col3 pull_left">
+	<% if @user.primary_twitter_account.blank? %>
+		<%= link_to "Add Twitter Account", url_for(:controller => :networks, :action => :add_api_account, :id => 'twitter'), class: "btn btn_twitter col6", :id => 'addTwitterbutton' %>
+	<% end %>
+	</div>
+	
+	<div class="col3 pull_left">
+	<% if @user.primary_facebook_account.blank? %>
+		<%= link_to "Add Facebook Account", url_for(:controller => :networks, :action => :add_api_account, :id => 'facebook'), class: "btn btn_facebook col6", :id => 'addFacebookbutton' %>
+	<% end %>
+	</div>
+
+</div>

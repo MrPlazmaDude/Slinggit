@@ -1,0 +1,50 @@
+<article class="row postArticle">
+<%= link_to(:controller => :posts, :action => :show, :id => post.id_hash) do %>
+  <div class="col1 pull_left">
+    
+    <div class="photo row">
+      <% if post.photo_file_name.blank? %>
+        <%= image_tag "noPhoto_80x80.png", :height => "auto", :width => "100%" %>
+      <% else %>
+        <%= image_tag post.photo.url(:medium), class: "img_border" %>
+      <% end %>
+    </div>
+    
+  </div>
+
+  <div class="col5 pull_right">
+
+    <div class="row">
+      <h4 class="item pull_left"><%= post.hashtag_prefix %></h4>
+      <span class="label_grey pull_left">$<%= number_with_delimiter(post.price, :delimiter => ',') %></span>
+    </div>
+
+    <div class="row">
+      <p><%= post.content %></p>
+    </div>
+    
+    <div class="row secondary">
+      <div class="col5 pull_left">
+        <small class="timestamp">Posted <%= time_ago_in_words(post.created_at) %> ago.</small>
+      </div>  
+      <div class="col1 pull_right">
+          <% if post.open? %>
+            <span class="text_green">Open</span>
+          <% else %>
+            <span class="text_red">Closed</span>
+          <% end %>
+      </div>
+    </div>
+
+    <% if is_signed_in_and_admin? && !current_user?(@user)%>
+    <div class="row adminActions">
+      <!-- ADMIN ONLY FUNCTIONALITY -->
+
+      <%= link_to "Admin", {:controller => :admin, :action => :go_to_admin_resource, :id => post.id, :resource => "post"} %>
+      
+    </div>
+    <% end %> 
+
+  </div> 
+<% end %>
+</article>

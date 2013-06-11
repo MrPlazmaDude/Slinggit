@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p>
+  Hi <%= @recipient_user.name %>,
+</p>
+
+<p>
+  <% if @message_object.source == 'post' %>
+      You received a new message in your Slinggit account regarding a post.
+  <% else %>
+      You received a new message in your Slinggit account.
+  <% end %>
+</p>
+
+<p>
+  Message contents:<br/><br/>
+  -----------<br/>
+  <%= @message_object.body %><br/>
+  -----------
+</p>
+
+<p>
+  To view more information about this message, please visit your <a href="<%= url_for :controller => :messages, :only_path => false, :host => HOSTURL, :protocol => "https://" %>">Slinggit inbox</a>.
+</p>
+
+<p>Sincerely,</p>
+
+<p>Your friends at Slinggit</p>
+</body>
+</html>

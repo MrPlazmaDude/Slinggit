@@ -1,0 +1,66 @@
+<section class="row wrapper adminSection">
+	<div class="white_well col2 pull_right">
+	    <div class="row admin_controlls">
+	    	<% if @post.status == "ACT" or @post.status == "BAN" %>
+	    		<%= link_to "Delete", {:controller => :admin, :action => :set_post_status, :id => @post.id, :status => "DEL" }, confirm: "Delete Post: You sure?", class: "col6 btn_red" %>
+
+	    	<% elsif @post.status == "DEL" %>
+	    		<%= link_to "Reenable", {:controller => :admin, :action => :set_post_status, :id => @post.id, :status => "ACT" }, confirm: "Reenable Post: You sure?", class: "col6 btn_green" %>
+
+	    	<% end %>
+	    </div>
+	</div>
+
+	<div class="white_well col4 pull_left">
+
+		<header class="row">
+			<h1>POST (<%= @post.hashtag_prefix %>)</h1>
+		</header>
+		<article class="row">
+			<div class="col3 pull_left">
+				<% if @post.photo_file_name.blank? %>
+			        <div id="placeholderWrapper">
+			          <%= image_tag "noPhoto_300x300.png", :id => "placeholderImg", :height => "auto", :width => "100%" %>
+			      <% else %>
+			          <%= image_tag @post.photo.url(:medium), :class => "img_border", :height => "auto", :width => "100%", :id => 'post_mainImage' %>
+			      <% end %>
+
+			</div>
+			<div class="col3 pull_right">
+				<p><%= @post.content %></p>
+				<h4>Posted by: <%= link_to @post.user.name, {:controller => :admin, :action => :view_user, :id => @post.user_id} %></h4>
+				<h4>Posted at: <%= link_to @post.hashtag_prefix, post_path(@post.id) %></h4>
+			</div>
+		</article>
+
+		<div class="row">
+
+	      <h3>Comments (<%= @post.comments.count %>) </h3>
+
+	      <section>
+	        <table class="admin_table table_bordered table-striped">
+	          <thead>
+	            <tr>
+	              <th></th>
+	              <th>Content</th>
+	              <th>Post</th>
+	              <th>Status</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <% @post.comments.each do |comment| %>
+	              <tr>
+	                <td><%= comment.id %></td>
+	                <td><%= link_to comment.body, {:controller => :admin, :action => :view_comment, :id => comment.id} %></td>
+	                <td><%= link_to comment.post.hashtag_prefix, {:controller => :admin, :action => :view_post, :id => comment.post.id} %></td>
+	                <td><%= comment.status %></td>
+	              </tr>
+	            <% end %>
+	          </tbody>
+	        </table>
+	      </section>
+
+	    </div>
+
+	</div>
+</section>

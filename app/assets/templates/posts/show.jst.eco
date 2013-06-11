@@ -1,0 +1,55 @@
+<% if @posts.length is 0: %>
+	<div class="row notice_bubble">
+	<% if @posts.getPostType() is "posted": %>
+		<p>You haven't created any posts yet. Get started by creating a 
+			<a href="/posts/new">New Post</a>!</p> 
+	<% else if @posts.getPostType() is "watched": %>
+		<p>You aren't watching any posts.  You should check out what people are selling.</p>
+	<% else if @posts.getPostType() is "archived": %>
+		<p>Nothing has been archived.</p>
+	<% end %>
+	</div>
+<% else: %>
+
+	<% for post in @posts.models: %>
+
+		<article class="row postArticle" style="display:none">
+		  <a href="/posts/<%= post.get("id_hash") %>">
+			  <div class="col1 pull_left">
+			    <div class="photo row">
+			        <img src="<%= post.get("post_medium_image_src") %>" class="<%= "img_border" if post.get("has_photo?") %>" >
+			    </div>
+			    
+			  </div>
+
+			  <div class="col5 pull_right">
+
+			    <div class="row">
+			      <h4 class="item pull_left"><%= post.get("hashtag_prefix") %></h4>
+			      <span class="label_grey pull_left">$<%= post.get("price") %></span>
+			    </div>
+
+			    <div class="row">
+			      <p><%= post.get("content") %></p>
+			    </div>
+			    
+			    <div class="row secondary">
+			      <div class="col5 pull_left">
+			        <small class="timestamp"><%= post.get("postedAgo") %> ago.</small>
+			      </div>  
+			      <div class="col1 pull_right">
+			          <% if post.get("open?") is true: %>
+			            <span class="text_green">Open</span>
+			          <% else: %>
+			            <span class="text_yellow">Closed</span>
+			          <% end %>
+			      </div>
+			    </div>
+
+			  </div> 
+			</a>
+		</article>
+
+	<% end %>
+
+<% end %>

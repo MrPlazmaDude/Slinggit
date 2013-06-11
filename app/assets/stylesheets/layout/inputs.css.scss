@@ -1,0 +1,130 @@
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="search"],
+textarea {
+	@include textInput;
+	@include rounded-corners($radius);
+	@include transition;
+	line-height: $leading;
+	margin: ($smallest-font * .5) auto;
+	#{$ff}box-shaodw: none;
+	#{$wk}box-shadow: none;
+	box-shadow: none;
+		&:focus {
+		outline: none;
+		box-shadow: $input-focus-shdw;
+		border: 1px solid $main-blue;
+		}
+}
+textarea {
+	resize: none;
+	height: ($leading * 5);
+	//clear: left;
+	//float: left;
+}
+
+.btn {
+	cursor: pointer;
+	padding: ($smallest-font * .5) $smallest-font;
+	margin-top: ($smallest-font * .5);
+	margin-bottom: ($smallest-font * .5);
+	color: $wht;
+	font-size: $small-font;
+	font-family: $main-font;
+	background: $main-grey;
+	border: 1px solid $main-grey;
+	text-align: center;
+	//box-shadow: $btn-shading;
+	@include rounded-corners($radius);
+	@include transition;
+	-webkit-appearance: none;
+	&:hover,
+	&:focus {
+		//box-shadow: $btn-focus;
+		color: $white;
+		outline:none;
+	}
+	&:active {
+		//box-shadow: $btn-active;
+		color: $lt-grey;
+	}
+}
+
+.btn_green {
+	@extend .btn;
+	background: darken($main-green, 10%);
+	border: 1px solid darken($main-green, 15%);
+}
+.btn_blue {
+	@extend .btn;
+	background: $main-blue;
+}
+.btn_twitter {
+	@extend .btn;
+	background: $twitter-blue;
+}
+.btn_facebook {
+	@extend .btn;
+	background: $fb-blue;
+}
+.btn_red {
+	@extend .btn;
+	background: darken($main-red, 17%);
+}
+.btn_yellow {
+	@extend .btn;
+	border: 1px solid $main-yellow;
+	background: lighten($main-yellow, 15%);
+	color: darken($main-yellow, 25%);
+	&:hover,
+	&:focus {
+		background: lighten($main-yellow, 17%);
+		box-shadow: $btn-focus;
+		color: darken($main-yellow, 25%);
+		outline:none;
+	}
+	&:active {
+		background: lighten($main-yellow, 17%);
+		box-shadow: $btn-active;
+		color: darken($main-yellow, 25%);
+	}
+}
+.btn_darkGrey {
+	@extend .btn;
+	background: $dk-grey;
+}
+.btn_ltGrey{
+	@extend .btn;
+	background: $lt-grey;
+	border: 1px solid lighten($main-grey, 20%);
+	color: darken($main-grey, 6%);
+	//box-shadow: $btn-shading;
+	&:hover,
+	&:focus {
+		background: lighten($lt-grey, 1%);
+		box-shadow: $btn-focus;
+		color: darken($main-grey, 6%);
+		outline:none;
+	}
+	&:active {
+		box-shadow: $btn-active;
+		color: darken($main-grey, 6%);
+	}
+}
+.button-wrapper.first{
+	padding-left: 0px;
+	padding-right: 5px;
+}
+
+.button-wrapper.last{
+	padding-left: 5px;
+	padding-right: 0px;
+}
+fieldset > label {
+	//font-size: $font-size * .875;
+	line-height: $leading;
+	display: block;
+	//margin: .8em 0 -.4em 0;
+}
+// end

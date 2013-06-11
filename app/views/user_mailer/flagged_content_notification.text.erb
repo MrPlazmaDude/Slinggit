@@ -1,0 +1,11 @@
+Content has been flagged,
+A <%= @flagged_content.source %> object has been flagged by a user.
+Object ID: <%= @flagged_content.id %><br/>
+Object Data:<br/>
+<% if not @flagged_content.source_object.blank? %>
+    <% @flagged_content.source_object.attributes.each do |key, value| %>
+        <%= key %> : <%= value %><br/>
+    <% end %>
+<% else %>
+    No object data could be found. Look up item in the flagged_contents table.
+<% end %>

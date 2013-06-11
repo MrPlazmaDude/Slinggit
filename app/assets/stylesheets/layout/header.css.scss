@@ -1,0 +1,112 @@
+#mainHeader {
+	background: $main-blue;
+	border-bottom: 1px solid darken($main-blue, 15%);
+	.hideSearch {
+		display: none;
+	}
+	.wrapper > .row:first-of-type {
+		padding-top: ($body-font * .25)
+	}
+	hgroup {
+		width: $sixCols * 1.2;
+		font-size: $small-font;
+		cursor: pointer;
+		text-align: center;
+		h1 {
+			//hide the h1 off canvas
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		img {
+			margin-top: $smallest-font;
+		}
+	}
+	.col2 {
+		font-size: $smaller-font;
+		cursor: pointer;
+		text-align: center;
+		color: $wht;
+	}
+	nav {
+		width: 80%;
+		> .row > .col2 {
+			width: $sixCols * 1.5;
+			text-align: center;
+			color: lighten($main-blue, 25%);
+			&.active {
+				color: lighten($main-blue, 50%);
+			}
+		}
+		.nav_dropDown.dropdown-menu {
+			position: absolute;
+			z-index: 9999;
+			background: darken($main-blue, 5%);
+		}
+		.dropdown-menu > li {
+			padding: ($font-size * 1.4575) ($font-size * .5);
+			border-top: 1px solid darken($lt-grey, 10%);
+			&:first-child {
+				border-top: none;
+			}
+			a {
+				color: $wht;
+			}
+		}
+	}
+	#quickSearchWrapper {
+		> .col3.pull_right {
+			float: none;
+			margin: -($body-font * 1.125) 0 0 $sixCols;
+			width: $sixCols * 4;
+			input[name="quickSearch"] {
+				font-size: $small-font;
+				@include rounded-corners($biggest-font);
+				width: 100%;
+				padding: ($smallest-font * .5) $biggest-font;
+				margin: 0 0 $smallest-font;
+				border: none;
+			}
+			.col2.pull_right.quickSearchLabel {
+					color: $wht;
+			span.ss-search {
+				position: relative;
+				top: $biggest-font;
+				left: $smallest-font;
+				z-index: 1333;
+				color: lighten($main-blue, 25%);
+				font-size: $small-font;
+				}
+			}
+		}
+		span.ss-search {
+			position: relative;
+			top: $biggest-font;
+			left: $smallest-font;
+			z-index: 1333;
+			color: lighten($main-blue, 25%);
+			font-size: $small-font;
+		}
+	}
+	.ss-home, .ss-inbox, .ss-search, .ss-settings, .ss-user {
+			display: block;
+			font-size: $big-font;
+		}
+	//SIGN IN LINK
+	#header_signIn {
+		width: 80%;
+		> .row > a.col2.pull_left {
+			margin-left: 22.5%;
+		}
+	}
+}
+
+.quickSearchLabel span:last-child {
+display: block;
+}
+
+.ie_logo_hack{
+	height: 20px;
+	width: 60px;
+	@extend .logoSmall;
+}

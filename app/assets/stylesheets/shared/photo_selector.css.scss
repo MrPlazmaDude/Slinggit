@@ -1,0 +1,50 @@
+#photoSelectorWrapper{
+	.col6{
+		text-align: center;
+		border-bottom: 1px solid $lt-grey;
+		padding-bottom: 5px;
+		margin-bottom:15px;
+	}
+	.col2{
+		.row{
+			text-align: center;
+			p{
+				font-size: $font-size * .7;
+			}
+			img{
+				padding: .3em;
+				border: 1px solid #D7D7D7;
+				border-radius: .3em;
+				background-color: #E3E3E3;
+				width: 54px;
+
+				&:hover{
+					border-color: #B8B8B8;
+					background-color: #D8D8D8;
+					cursor: pointer;
+				}
+
+				&.selected{
+					background-color: $main-green;
+				}
+				&.selectedPhoto{
+					width: 80px;
+					border: 0;
+
+					&:hover{
+						cursor: default;
+						border-color: #D7D7D7;
+						background-color: #E3E3E3;
+					}
+				}
+			}
+
+		}
+		a.change{
+			font-size: $font-size * .9;
+			margin-top: 30px;
+			border: 0;
+			color: darken($main-blue, 25%);
+		}
+	}
+}

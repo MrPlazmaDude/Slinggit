@@ -1,0 +1,27 @@
+#mainHeader {
+	.wrapper > .row:first-child {
+		width: $sixCols * 4;
+		float: left;
+	}
+	hgroup {
+		width: ($sixCols * .875);
+	}
+	.quickSearchLabel {
+		display: none;
+	}
+	
+	.hideSearch {
+		display: inline-block;
+	}
+	#quickSearchWrapper {
+		width: $sixCols * 2;
+		float: right;
+		> .col3.pull_right {
+			float: right;
+			width: 100%;
+		}
+	}
+	#header_signIn > .row > a.col2.pull_left{
+	margin-left: 0;
+	}
+}

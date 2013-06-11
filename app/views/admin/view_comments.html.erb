@@ -1,0 +1,34 @@
+<div class="row wrapper adminSection">
+  <h1>All Comments</h1>
+
+  <div class="row">
+  <%= will_paginate @comments%>
+  </div>
+
+  <section>
+    <table class="admin_table table_bordered table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Content</th>
+          <th>Post</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= comment.id %></td>
+            <td><%= link_to comment.body, {:controller => :admin, :action => :view_comment, :id => comment.id} %></td>
+            <td><%= link_to comment.post.hashtag_prefix, {:controller => :admin, :action => :view_post, :id => comment.post.id} %></td>
+            <td><%= link_to comment.user.name, {:controller => :admin, :action => :view_user, :id => comment.user.id} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="row">
+  <%= will_paginate @comments%>
+  </div>
+</div>

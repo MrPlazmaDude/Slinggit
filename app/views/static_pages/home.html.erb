@@ -1,0 +1,98 @@
+<% provide(:title, 'Home') %>
+
+<!-- if user is not signed in -->
+    <% if current_user.blank? %>
+<section class="homepage row">
+		<!-- <div class="row grey_back"></div> -->
+    	<div class="wrapper">
+    		<h1 class="row">Sell to people you know. <span>Buy from people you trust.</span></h1>
+    		<section class="row">
+				<article class="col3 pull_right">
+					<header class="row">
+						<h1>A safer way to buy &amp; sell items online.</h1>
+						<p>Quickly connect with friends and followers to make deals with people you already know and trust.</p>
+					</header>
+					<div class="row">
+						<%= link_to "Try Slinggit", signup_path, class: "col6 btn_green" %>
+					</div>
+					<!--<div class="app-link col4 offset1">-->
+					<a href="http://itunes.apple.com/us/app/slinggit/id543458895?mt=8&uo=4" target="itunes_store" title="iOS App Store" class="app-link btn_darkGrey row">
+						<span class="col1 pull_left ss-cell"></span>
+						<span class="col5 pull_right">Get the iPhone App</span>
+					</a>
+					<!--</div>-->
+				</article>
+				<figure class="col3 pull_left">
+					<%= image_tag "heroimages/iOS_safari_bike_320x621.png", width: "100%", height: "auto", title: "Slinggit on your mobile device", alt: "Slinggit on iOS Safari" %>
+				</figure>
+				<p class="row">No more dealing with scammers and strangers. With Slinggit you can quickly sell to your friends or the greater community. It's up to you.</p>
+			</section>
+			<section class="row">
+				<div class="col6 well_padding">
+					<aside class="row">
+						<div class="col2 pull_left">
+							<figure class="white_well">
+								<div class="row">
+									<span class="ss-facebook ss-social-circle col3 pull_left"></span>
+									<span class="ss-twitter ss-social-circle col3 pull_left"></span>
+								</div>
+								<figcaption class="row">Connect your Facebook and Twitter to send posts to your friends and followers. You also have the option to post to Slinggit's public feeds.</figcaption>
+							</figure>
+						</div>
+						<div class="col2 pull_left">
+							<figure class="white_well">
+								<div class="row">
+									<span class="ss-location col6"></span>
+								</div>
+								<figcaption class="row">Post an item based on your location (town, city, zip code) allowing friends and people in your community to buy your item. Keep it local!</figcaption>
+							</figure>
+						</div>
+						<div class="col2 pull_left">
+							<figure class="white_well">
+								<div class="row">
+									<span class="ss-cell col3 pull_left"></span>
+									<span class="ss-desktop col3 pull_left"></span>
+								</div>
+								<figcaption class="row">Slinggit is built with web standards. This means Slinggit is available to anyone with internet, regardless of device. We love the web!</figcaption>
+							</figure>
+						</div>
+					</aside>
+				</div>
+			</section>
+
+		</div>
+	<div class="color_block"></div>
+<!-- if user is signed in -->
+	<% elsif not current_user.blank? %>
+<section class="wrapper homepage">
+
+		<section class="secondary">
+    		<div class="secondary_inner">
+    			<%= render 'shared/user_info' %>
+    		</div>
+
+    		<div class="secondary_inner">
+				<div class="row">
+					<%= link_to "New Post", new_post_path, class: "ss-compose col3 pull_left btn_green" %>
+					<%= link_to "My Posts", current_user, class: "ss-notebook col3 pull_right btn_ltGrey" %>
+				</div>
+				<div class="row wrong-user">
+					<%= link_to signout_path, method: "delete", class: "pull_right" do %>
+						<span>Not <%= current_user.name %>?</span> Sign Out.
+					<% end %>
+				</div>
+    		</div>
+    	</section>
+
+    	<section class="main">
+    		<% if !@posts.blank? %>
+		        <article class="row home_featurePost">
+		            <div  id="featuredPosts" class="col6">
+						<h1 class="row">Recent Posts:</h1>
+						<%= render @posts %>
+					</div>
+		        </article>
+		    <% end %>
+    	</section>
+	<% end %>
+</section>

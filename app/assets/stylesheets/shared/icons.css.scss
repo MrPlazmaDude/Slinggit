@@ -1,0 +1,104 @@
+.btnNavSprite {
+	background: url("icons/navigation/primaryNav_sprite_320x244.png") no-repeat 0 0;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+}
+//SLINGGIT ICON
+.logoSmall{
+	@extend .btnNavSprite;
+	background-position: -160px -180px;
+}
+//TWITTER ICON
+.twitIconSmall {
+	@extend .btnNavSprite;
+	background-position: -264px -212px;
+}
+.twitIcon {
+	@extend .btnNavSprite;
+	background-position: -163px 0;
+	height: 32px;
+	width: 32px;
+}
+.twitIconSmall_dark {
+	@extend .btnNavSprite;
+	background-position: -296px -213px;
+}
+.twitIcon_dark {
+	@extend .btnNavSprite;
+	background-position: -289px -180px;
+	height: 32px;
+	width: 32px;
+}
+//FACEBOOK ICON
+.facebookIcon {
+	@extend .btnNavSprite;
+	background-position: -256px -120px;
+	height: 32px;
+	width: 32px;
+}
+.facebookIconSmall {
+	@extend .btnNavSprite;
+	background-position: -264px -152px;
+}
+//BLOG ICON
+.blogIcon {
+	@extend .btnNavSprite;
+  	background-position: -33px -183px;
+	height: 32px;
+	width: 32px;
+}
+.blogIconSmall {
+	@extend .btnNavSprite;
+	background-position: -33px -215px;
+}
+//POSTS ICON
+.btn_navPosts {
+	@extend .btnNavSprite;
+	background-position: -40px -92px;
+	display: block;
+	margin: 0 auto;
+}
+//MESSAGES ICON
+.btn_navMessages {
+	@extend .btnNavSprite;
+	background-position: -40px -153px;
+	display: block;
+	margin: 0 auto;
+}
+//SEARCH ICON
+//.btn_navSearch {
+//	@extend .btnNavSprite;
+//	background-position: -169px -152px;
+//	display: block;
+//	margin: 0 auto;
+//}
+//SETTINGS ICON
+.btn_navSettings {
+	@extend .btnNavSprite;
+	background-position: -39px -32px;
+	display: block;
+	margin: 0 auto;
+}
+//SEARCH ICON
+.btn_navSearch {
+	@extend .btnNavSprite;
+	background-position: -169px -152px;
+}
+//COLORADO ICON
+.coloradoIcon {
+	@extend .btnNavSprite;
+	background-position: -296px -152px;
+}
+//FLAG ICON
+.flagIcon {
+	@extend .btnNavSprite;
+	background-position: -131px -91px;
+	height: 17px;
+}
+.flagIconSmall {
+	@extend .btnNavSprite;
+	background-position: -131px -107px;
+	height: 13px;
+	width: 12px;
+}

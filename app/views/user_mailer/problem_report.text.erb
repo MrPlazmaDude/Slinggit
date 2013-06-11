@@ -1,0 +1,16 @@
+Caught exception! <%= @problem_report.exception_message %>
+
+Signed in user id: <%= @problem_report.signed_in_user_id || 'not signed in' %>
+User Agent: <%= @problem_report.user_agent || 'N/A' %>
+Ip Address: <%= @problem_report.ip_address || 'N/A' %>
+Url Referrer: <%= @problem_report.url_referrer || 'N/A' %>
+
+<strong>Signed in user id:</strong> <%= @problem_report.signed_in_user_id || 'not signed in' %><br/>
+<strong>User Agent:</strong> <%= @problem_report.user_agent || 'N/A' %><br/>
+<strong>Ip Address:</strong> <%= @problem_report.ip_address || 'N/A' %><br/>
+<strong>Url Referrer:</strong> <%= @problem_report.url_referrer || 'N/A' %>
+
+Exception Class: <%= @problem_report.exception_class %>
+
+Exception Backtrace:
+<%= @problem_report.exception_backtrace.join("\n") %>

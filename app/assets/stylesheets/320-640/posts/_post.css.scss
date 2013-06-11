@@ -1,0 +1,32 @@
+// Starting node in _post.html.erb
+.postArticle{
+	.col1{
+		width: ($sixCols * 2);
+
+		img{
+			width: 80px;
+		}
+	}
+	.col5{
+		padding-left: 0px;
+		width: ($sixCols * 4);
+
+		h4{
+			font-size: $font-size * .9;
+		}
+
+		span{
+			font-size: $font-size * .7;
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-left: 12px;
+			padding-right: 12px;
+			margin-top: 0px;
+			margin-left: 10px;
+		}
+
+		p{
+			font-size: $font-size * .8;
+		}
+	}
+}

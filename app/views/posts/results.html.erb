@@ -1,0 +1,28 @@
+<% provide(:title, "Post Search") %>
+<section id="searchPostWrapper" class="wrapper"> 
+
+  <div id="postSearchResults" class="col4 offset1 white_well">
+    
+    <div class="row">
+      <div class="col6 pull_left grey_well">
+        <header>
+          <h4>Search Results for <strong><%= @search_terms_entered %></strong></h4>
+        </header>
+      </div>
+    </div>
+
+    <div id="postArticlesWrapper">
+      <% if not @posts.blank? %>
+        <%= render @posts %>
+      <% else %>
+        <div class="row">
+          <p>No posts were found for <strong><%= @searchTerm %></strong></p>
+        </div>
+      <% end %>
+  </div>
+
+  </div>
+
+</section>
+
+

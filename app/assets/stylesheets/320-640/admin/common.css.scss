@@ -1,0 +1,5 @@
+.adminSection{
+	.white_well.col2, .white_well.col4{
+		@include colNoFloatClearFix;
+	}
+}

@@ -1,0 +1,133 @@
+<% provide(:title, 'Twitter Accounts') %>
+<section class="wrapper accounts">
+
+  <!-- wrap the networks matrix in a column -->
+  <article class="col4 white_well pull_left">
+
+    <header class="row contentHeader">
+      <h1>Manage Your Social Networks</h1>
+    </header>
+
+    <div class="row">
+      <ul class="col1 pull_left">
+        <li>Source</li>
+        <% if not @api_accounts.blank? %>
+            <% @api_accounts.each do |api_account| %>
+                <li id="twitterAccountSource_<%= api_account.id.to_s %>"><%= api_account.api_source.titleize %></li>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="col1 pull_left">
+        <li>Acct. Name</li>
+        <% if not @api_accounts.blank? %>
+            <% @api_accounts.each do |api_account| %>
+                <li id="twitterAccountUserName_<%= api_account.id.to_s %>"><%= api_account.user_name %></li>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="col1 pull_left networks_metaData">
+        <li>Description</li>
+        <% if not @api_accounts.blank? %>
+            <% @api_accounts.each do |api_account| %>
+                <li id="twitterAccountUserName_<%= api_account.id.to_s %>"><%= api_account.user_name %></li>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="col1 pull_left networks_metaData">
+        <li>Status</li>
+        <% if not @api_accounts.blank? %>
+            <% @api_accounts.each do |api_account| %>
+                <li id="twitterAccountStatus_<%= api_account.id.to_s %>"><%= api_account.status %></li>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="col1 pull_left networks_metaData">
+        <li>Authorized</li>
+        <% if not @api_accounts.blank? %>
+            <% @api_accounts.each do |api_account| %>
+                <li id="twitterAccountReauth_<%= api_account.id.to_s %>"><%= api_account.reauth_required == 'yes' ? "No" : "Yes" %></li>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="col1 pull_left">
+        <li>Actions</li>
+        <% if not @api_accounts.blank? %>
+            <% @api_accounts.each do |api_account| %>
+                <li id="account-actions"><%= link_to "set primary", nil, :id => "apiAccountPrimary_#{api_account.id}", :class => "btn btn_green" %>
+                  <span id="spanSeperator_<%= api_account.id.to_s %>"> <%= api_account.status == 'ACT' ? '|' : '' %>  </span>
+                  <%= link_to "delete", nil, :id => "apiAccountDelete_#{api_account.id}", :class => "btn btn_red" %>
+                </li>
+            <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+  </article>
+  <!-- end the column -->
+
+  <aside class="col2 pull_right">
+    <div class="row white_well">
+      <%= link_to "Add Twitter Account", url_for(:controller => :networks, :action => :add_api_account, :id => 'twitter'), class: "btn btn_twitter col6", :id => 'addTwitterbutton' %>
+      <!-- <span class="twitIconSmall"></span> -->
+      <%= link_to "Add Facebook Account", url_for(:controller => :networks, :action => :add_api_account, :id => 'facebook'), class: "btn btn_facebook col6", :id => 'addFacebookbutton' %>
+    </div>
+  </aside>
+
+  <!-- CMK  I'm going to refactor this into a Backbone View -->
+  <script type="text/javascript">
+      $(document).ready(function () {
+
+          <% @api_accounts.each do |api_account| %>
+          <% if api_account.status == 'PRM'%>
+          $('#apiAccountPrimary_' + <%= api_account.id %>).hide();
+          <% end %>
+          <% end %>
+
+          $("[id^=apiAccountDelete_]").each(function (key) {
+              $('#' + this.id).click(function (e) {
+                  if (confirm("Are you sure you want to delete this account?")) {
+                      e.preventDefault();
+                      $.ajax({
+                          type:"POST",
+                          url:"<%= url_for :controller => :networks, :action => :delete_account %>",
+                          data:{api_account_id:this.id}
+                      }).done(function (response) {
+                                  if (response != "error") {
+                                      $('[id$="_' + response + '"]').hide()
+                                  }
+                              });
+                  } else {
+                      return false;
+                  }
+              });
+          });
+
+          $("[id^=apiAccountPrimary_]").each(function (key) {
+              $('#' + this.id).click(function (e) {
+                  e.preventDefault();
+                  $.ajax({
+                      type:"POST",
+                      url:"<%= url_for :controller => :networks, :action => :set_primary_account %>",
+                      data:{api_account_id:this.id}
+                  }).done(function (response) {
+                              if (response != "error") {
+                                  new_old = response.split("_")
+                                  $('#apiAccountPrimary_' + new_old[0]).hide();
+                                  $('#spanSeperator_' + new_old[0]).hide();
+                                  $('#twitterAccountStatus_' + new_old[0]).text('primary')
+
+                                  $('#apiAccountPrimary_' + new_old[1]).show();
+                                  $('#spanSeperator_' + new_old[1]).show();
+                                  $('#twitterAccountStatus_' + new_old[1]).text('active')
+                              }
+                          });
+              })
+          })
+      });
+  </script>
+</section>

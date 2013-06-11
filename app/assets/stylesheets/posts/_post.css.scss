@@ -1,0 +1,110 @@
+// Starting node in _post.html.erb
+.postArticle{
+  border-bottom: 1px solid $lt-grey;
+  padding: 8px 0 8px;
+
+  &:hover{
+    background-color: lighten($lt-grey, 11%) !important;
+  }
+
+  &> a{
+    color: $dk-grey;
+
+  }
+  .col1{
+    text-align: center;
+    .row{
+      margin-bottom: 4px;
+    }
+  }
+
+  .col5{
+    padding-left: 15px;
+    h4{
+      font-weight: 600;
+    }
+    span{
+      //font-size: $font-size * .7;
+      padding-left: 12px;
+      padding-right: 12px;
+      margin-top: 5px;
+      margin-left: 10px;
+    }
+    p{
+     // font-size: $font-size * .9;
+    }
+
+    .secondary{
+      margin-top: 10px;
+
+      .col5{
+        padding-left: 0px;
+      }
+    }
+  }
+}
+
+.timestamp {
+  //display: block;
+  color: lighten($dk-grey, 12%);
+  font-size: $smaller-font;
+  line-height: $smaller-font * 1.2;
+}
+
+// HEADS UP!  I'm only keeping this here for now because I'm not sure
+// if it's used for anything anymore.  I can't find it's use, but want to 
+// wait until I'm 100% sure
+
+// // posts page
+// .posts article ul {
+//     list-style: disc outside;
+//     margin: $font-size 0;
+// 	  overflow: hidden;
+//     li {
+//       margin: 0 0 0 0;
+//       list-style: none;
+//       a {
+//         color: rgb(62, 62, 62);
+// 		width: 100%;
+//         .photo {
+//           border: 1px solid $lt-grey;
+//           padding: 1px;
+//           width: 90%;
+//           background-color: $wht;
+// 		  margin: 0;
+//         }
+//         .item {
+//           font-size: $font-size * 1;
+//           display: block;
+//         }
+//         .content {
+//           font-size: $font-size;
+//           line-height: $font-size;
+//           margin: 0 0 ($font-size * .5) 0;
+//         }
+//         .timestamp {
+//           display: block;
+//           font-size: $font-size * .65;
+//           line-height: ($font-size * .65) * 1.2;
+//         }
+//       }
+//       .pull-right {
+//         margin: .7em 0;
+//         a {
+//           color: $main-blue;
+//           font-size: $font-size * .75;
+//           font-weight: bold;
+//         }
+//         .label {
+//           border-right: 1px solid $lt-grey;
+//           padding-right: $font-size * .75;
+//           margin-right: $font-size * .75;
+//         }
+//       }
+//     }
+//   }
+//   article > ul + .form-actions {
+//     width: 100%;
+//     margin: 1.4em 0 0 0;
+//   }
+//   // end

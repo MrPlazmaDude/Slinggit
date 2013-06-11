@@ -1,0 +1,13 @@
+<aside class="userInfo row">
+	<a href="<%= user_path(current_user) %>" class="col2 pull_left">
+		<%= image_tag current_user.profile_photo_url, :height => "auto", :width => "100%" %>
+	</a>
+	<header class="col4 pull_right">
+		<h1 class="bottom_border"><%= current_user.name %></h1>
+		<dl class="dl-horizontal">
+            <dt>Open Posts:</dt> <dd><%= current_user.open_post_count %></dd>
+            <dt>Posts Remaining:</dt> <dd><%= (current_user.post_limit) - (current_user.open_post_count) %></dd>
+            <dt>Open Post Limit:</dt> <dd><%= current_user.post_limit %></dd>
+        </dl>
+	</header>
+</aside>

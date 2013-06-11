@@ -1,0 +1,66 @@
+  //styles for notices
+#explanation_bubble {
+	background: lighten($dk-grey, 15%);
+	color: $wht;
+	box-shadow: 0 1px 0 rgba(0,0,0,.2);
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: ($font-size * .8);
+	padding: 1em .8em .8em;
+	margin-top: -1.1em;
+	@include hardEdge-top;
+
+	strong{
+		font-weight: 600;
+	}
+}
+
+#success_explanation_bubble {
+	@extend #explanation_bubble;
+	background: lighten($main-green, 15%);
+}
+
+#error_explanation_bubble {
+    @extend #explanation_bubble;
+    background: lighten($main-red, 15%);
+}
+
+#notice_explanation_bubble, .notice_explanation_bubble {
+    @extend #explanation_bubble;
+    background: lighten($main-yellow, 35%);
+    color: darken($main-yellow, 25%);
+}
+
+#error_explanation {
+	float: left;
+	color: $main-red;
+	font-size: ($font-size * .8);
+	line-height: $leading;
+	letter-spacing: .1em;
+	margin: 0 0 1em 0;
+}
+
+#friendly_explanation_bubble{
+	@extend #explanation_bubble;
+	background: lighten($main-blue, 20%);
+	color: $dk-grey;
+}
+
+#notice_explanation {
+	@extend #success_explanation;
+	background: lighten($main-yellow, 15%);
+	color: $main-grey;
+}
+
+.notice_text {
+	background: lighten($main-yellow, 15%);
+	padding: .1em 0;
+}
+
+.notice_bubble{
+	width: 90%;
+	margin-top: 10px;
+	@extend #notice_explanation_bubble;
+}
+  //end

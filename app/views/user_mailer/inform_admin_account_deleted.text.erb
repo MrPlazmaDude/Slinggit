@@ -1,0 +1,14 @@
+<%= "#{@user.name}(#{@user.email}) with user_id #{@user.id} has deleted their account.  They have provided the following feedback:" %>
+
+<% if not @user_feedbacks.blank? %>
+    <% @user_feedbacks.each do |feedback| %>
+        <%= feedback.information %> (source: <%= feedback.source %>)
+
+    <% end %>
+<% else %>
+    No Feedback Provided
+<% end %>
+
+Sincerely,
+
+The Angel of Death

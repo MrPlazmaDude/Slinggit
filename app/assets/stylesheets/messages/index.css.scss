@@ -1,0 +1,82 @@
+.messages {
+	article {
+		margin-top: 1em;
+    padding: 20px;
+
+    #postArticlesWrapper{
+      margin-top: 0px;
+    }
+
+    &> .row{
+      margin-top: 20px;
+    }
+	}
+	#counter_message_body {
+		color: $main-red;
+		float: right;
+	}
+	label {
+		font-size: $font-size;
+		line-height: $leading;
+	}
+}
+
+#msgArticles {
+  #msgArticleWrapper {
+    a .row {
+      margin: .8em auto;
+    }
+  }
+  .timestamp {
+    font-size: ($font-size * .6);
+    padding: ($font-size * .2) 0;
+    margin: ($font-size * .2) auto;
+    line-height: $leading;
+  }
+  .timestamp + a:link,
+  .timestamp + a:visited,
+  .timestamp + a:active {
+    float: right;
+    color: $main-red;
+    font-size: ($font-size * .6);
+  }
+  .timestamp + a:hover,
+  .timestamp + a:focus {
+    color: darken($main-red, 20%);
+  }
+}
+
+p.messageUnread {
+  font-weight: bold;
+  color: $black
+}
+
+p.messageRead {
+  font-weight: 400;
+  color: $black
+}
+
+#boxFilters{
+  margin-bottom: 5px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid $lt-grey;
+  a{
+    display: inline-block;
+    padding: 10px 10px 10px 10px;
+    text-decoration: none;
+    font-size: $font-size * .9;
+    color: $dk-grey;
+    border: 1px solid transparent;
+    &:hover{
+      background-color: lighten($lt-grey, 12%);
+      border: 1px solid lighten($lt-grey, 8%);
+      @include rounded-corners(3px);
+    }
+  }
+  a.active{
+    background-color: lighten($lt-grey, 10%);
+    color: $dk-grey;
+    border: 1px solid lighten($lt-grey, 5%);
+    @include rounded-corners(3px);
+  }
+}

@@ -1,0 +1,180 @@
+// TYPOGRAPHY
+$main-font: 'Varela', verdana, helvetica, arial, sans-serif;
+$txt-shdw: 0 1px 0 rgba(0, 0, 0, .2);
+//$padding: .4em .6em;
+
+//FONT SIZING 1:1.5 perfect fifth ratio
+$leading: 1.5em; //correlates to the 1:1.5 ratio for font sizing
+$biggest-font: 1.898em; //30.375px //mastheads
+$bigger-font: 1.5em; //24px //really big, loud stuff
+$big-font: 1.266em; //20.25 //item name, user name
+$font-size: 1em;
+$body-font: 1em; //16px //post details, copy
+$small-font: .844em; //13.5px  //small copy points
+$smaller-font: .667em; //10.667 //fine print
+$smallest-font: .563em; //9px //tiny copy and spacing
+//END
+
+//COLUMN WIDTH
+$sixCols: 16.66666667%;
+
+// COLOR VARIABLES
+$main-grey: rgb(119, 119, 119);
+$main-red: rgb(253, 65, 40);
+$main-yellow: rgb(255, 206, 0);
+$main-blue: rgb(72, 141, 226);
+$main-green: rgb(75, 192, 75);
+$twitter-blue: rgb(0, 172, 237);
+$fb-blue: rgb(59, 89, 152);
+
+$black: rgb(0,0,0);
+$lt-grey: rgb(219, 219, 219);
+$dk-grey: rgb(71, 71, 71);
+$wht: rgb(248, 248, 248);
+$white: rgb(255,255,255);
+
+// VENDOR PREFIXES
+$ff: -moz-;
+$wk: -webkit-;
+$ms: -ms-;
+$o: -o-;
+
+// TRANSITIONS
+$tranny: all .3s ease;
+@mixin transition($tranny){
+  #{$ff}transition: $tranny;
+  #{$wk}transition: $tranny;
+  #{$o}transition: $tranny;
+  #{$ms}transition: $tranny;
+  transition: $tranny;
+}
+
+// INPUT FIELDS
+$input-txt-shading: inset 0 1px 1px rgba($dk-grey, .15), 0 1px 0 rgba($white, .5);
+$input-focus-shdw: 0 0 8px rgba($main-blue, .5);
+$btn-shading: 0 1px 1px rgba($black, .25), inset 0 1px 1px rgba($white, .25);
+$btn-txt-shading: 0 -1px 0 rgba($black, .25), 0 0 8px rgba($white, .25);
+$btn-focus: inset 0 1px 2px ($white, .65), 0 0 2px 1px ($black, .2);
+$btn-focus-txt: 0 1px 0 rgba($black, .25), 0 0 8px rgba($black, .25);
+$btn-active: inset 0 0 1px rgba($black, .5), 0 0 2px rgba($white, .75);
+$btn-active-txt: 0 0 8px rgba($black, .75);
+
+@mixin textInput {
+	padding: $radius;
+	font-size: $body-font;
+	font-family: $main-font;
+	color: $main-grey;
+	border: 1px solid $lt-grey;
+	//box-shadow: $input-txt-shading;
+	//text-indent: .2em;
+	//height: 2em;
+}
+
+// BORDER RADIUS
+$border-width: 1px;
+$radius: ($body-font * .125);
+$side-tl: top-left;
+$side-bl: bottom-left;
+$side-tr: top-right;
+$side-br: bottom-right;
+@mixin rounded-corners($radius) {
+	#{$ff}border-radius: $radius;
+	#{$wk}border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin hardEdge-right {
+	@include rounded-corners(0);
+	#{$ff}border-#{$side-tl}-radius: $radius;
+	#{$wk}border-#{$side-tl}-radius: $radius;
+	border-#{$side-tl}-radius: $radius;
+	#{$ff}border-#{$side-bl}-radius: $radius;
+	#{$wk}border-#{$side-bl}-radius: $radius;
+	border-#{$side-bl}-radius: $radius;
+}
+@mixin hardEdge-left {
+	@include rounded-corners(0);
+	#{$ff}border-#{$side-tr}-radius: $radius;
+	#{$wk}border-#{$side-tr}-radius: $radius;
+	border-#{$side-tr}-radius: $radius;
+	#{$ff}border-#{$side-br}-radius: $radius;
+	#{$wk}border-#{$side-br}-radius: $radius;
+	border-#{$side-br}-radius: $radius;
+}
+@mixin hardEdge-top {
+	@include rounded-corners(0);
+	#{$ff}border-#{$side-br}-radius: $radius;
+	#{$wk}border-#{$side-br}-radius: $radius;
+	border-#{$side-br}-radius: $radius;
+	#{$ff}border-#{$side-bl}-radius: $radius;
+	#{$wk}border-#{$side-bl}-radius: $radius;
+	border-#{$side-bl}-radius: $radius;
+}
+@mixin hardEdge-bottom {
+	@include rounded-corners(0);
+	#{$ff}border-#{$side-tr}-radius: $radius;
+	#{$wk}border-#{$side-tr}-radius: $radius;
+	border-#{$side-tr}-radius: $radius;
+	#{$ff}border-#{$side-tl}-radius: $radius;
+	#{$wk}border-#{$side-tl}-radius: $radius;
+	border-#{$side-tl}-radius: $radius;
+}
+
+// Background clipping
+@mixin background-clip($clip) {
+	-webkit-background-clip: $clip;
+	-moz-background-clip: $clip;
+	background-clip: $clip;
+}
+
+// Opacity
+@mixin opacity($opacity) {
+  opacity: $opacity / 100;
+  filter: alpha(opacity=$opacity);
+  //filter: ~"alpha(opacity=@{opacity})";
+}
+
+// Modal
+@mixin modal-sizer($modal-width){
+	width: $modal-width;
+	margin-top: -($modal-width/2);
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: -($modal-width/2);
+}
+
+// small handheld device
+@mixin colNoFloatClearFix{
+	display: block;
+	float: none;
+	clear: both;
+	width: 100%;
+}
+
+// -- SHADOWS -- 
+$head-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.25), inset 0 3px 13px rgba(0, 0, 0, 0.2), inset 0 0 30px rgba(0, 0, 0, .15);
+$foot-shadow: 0 -1px 1px rgba(0, 0, 0, .25), inset 0 1px 0 rgba(255, 255, 255, .5);
+$wrapper-shadow: 0 1px 3px rgba(0, 0, 0, 0), 0 1px 3px rgba(0, 0, 0, .1);
+$modal-shadow: 0 3px 7px rgba(0,0,0,0.3);
+$image-shadow: 0 2px 3px rgba(0, 0, 0, 0), 0 2px 3px rgba(0, 0, 0, .1);;
+
+@mixin box-shadow($shadow){
+	#{$ff}box-shadow: $shadow;
+	#{$o}box-shadow: $shadow;
+    #{$wk}box-shadow: $shadow;
+   	box-shadow: $shadow;
+}
+
+@mixin white-well($border-width) {
+	background-color: $white;
+	border: $border-width solid $lt-grey;
+	//padding: 1.5em;
+	padding: $small-font;
+	@include rounded-corners($radius);
+}
+
+//sidebar styling
+@mixin sidebarWrapper{
+	margin-top: 1em;
+	padding-left: 1em;
+	vertical-align: top;
+}

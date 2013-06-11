@@ -1,0 +1,24 @@
+<div class="row wrapper adminSection">  
+	<h6>View Details For <%= @problem_report.exception_message %> </h6>
+
+	<p><strong>ID:</strong> <%= @problem_report.id %></p>
+	<p><strong>Created At</strong> <%= @problem_report.created_at %></p>
+	<p><strong>Owned By</strong> <%= @problem_report.owner_name %></p>
+	<p><strong>Status</strong> <%= @problem_report.status %></p>
+	<p><strong>Exception Message:</strong> <%= @problem_report.exception_message %></p>
+	<p><strong>Exception Class:</strong> <%= @problem_report.exception_class %></p>
+	<p><strong>User Agent:</strong> <%= @problem_report.user_agent %></p>
+	<p><strong>IP Address:</strong> <%= @problem_report.ip_address %></p>
+	<p><strong>URL Referrer:</strong> <%= @problem_report.url_referrer %></p>
+	<p><strong>User Signed In:</strong> <%= @problem_report.signed_in_user_name %></p>
+	<p><strong>Last Updated At</strong> <%= @problem_report.updated_at %></p>
+	<p><strong>Last Updated By</strong> <%= @problem_report.last_updated_by_name %></p>
+	<p><strong>Exception Backtrace:</strong>
+	  <% @problem_report.exception_backtrace.split('-').each do |line| %>
+	      <% if not line.strip.blank? %>
+	          <%= line %><br/>
+	      <% end %>
+	  <% end %>
+	</p>
+</div>
+

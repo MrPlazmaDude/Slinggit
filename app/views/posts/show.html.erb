@@ -1,0 +1,96 @@
+<% provide(:title, @post.hashtag_prefix) %>
+<section id="post" class="wrapper">
+
+	<article class="secondary">
+		<div class="secondary_inner">
+			<div class="userInfo row">
+		        <a href="<%= user_path(@user) %>" class="col2 pull_left">      
+		          <%= image_tag @user.profile_photo_url, :height => "auto", :width => "100%", class: "profile_pic" %>
+		        </a>
+		        <header class="col4 pull_right">
+		          <h1 class="bottom_border"><%= @user.name %></h1>
+		          <dl class="dl-horizontal">
+		            <dt>Open Posts:</dt> <dd><%= @user.open_post_count %></dd>
+		          </dl>
+		        </header>
+
+		        <% if is_signed_in_and_admin? && !current_user?(@user) %>
+		            <div class="row adminActions">
+		              <!-- ADMIN ONLY FUNCTIONALITY -->
+		                <%= link_to "Admin", {:controller => :admin, :action => :go_to_admin_resource, :id => @user.id, :resource => "user"} %>
+		            </div>
+		          <% end %>
+		    </div>
+		</div>
+	</article>
+
+	<article id="postContent" class="main">
+
+		<div class="row">
+			<%= render 'posts/post_details' %>
+		</div>
+
+		<div id="comments" class="row">
+			<div class="col6 <%=@post.open_class%>">
+				<div id ="commentContent" class="row">
+					<div class="col6"> 
+						<% if @comments.any? %>
+							<h3>Comments</h3>
+							<%= render @comments %>
+							<%= will_paginate @comments %>
+						<% else %>
+							<%= render 'posts/post_no_comments' %>
+						<% end %>  
+					</div>
+				</div>
+				<% if signed_in? %>
+					<div id="commentInput" class="row">	
+						<div class="col6"> 
+						<%= render 'posts/post_comment_form' %>
+						</div>
+					</div>
+				<% else %>
+					<div id="signUpWrapper" class="row">	
+						<div class="col6">
+							<%= render 'posts/post_comments_signup' %>
+						</div>
+					</div>
+				<% end %>
+				
+			</div>
+		</div>
+
+	</article>
+
+
+	<article class="secondary">
+		<div class="secondary_inner">
+
+		    <div class="secondary_actions">
+				<% if @post.open? %>
+					<% if current_user?(@post.user) %>
+						<%= render 'posts/post_controls' %>
+					<% else %>
+						<%= render 'posts/post_sidebar' %>
+					<% end %>
+				<% else %>
+					<%= render 'posts/post_closed_sidebar' %>
+				<% end %>
+			</div>
+		</div>
+	</article>
+
+		
+	<% if is_signed_in_and_admin? && !current_user?(@user) %>
+		<!-- ADMIN ONLY FUNCTIONALITY -->
+		<div class="row adminActions">
+	    <!-- ADMIN ONLY FUNCTIONALITY -->
+	        <%= link_to "Admin", {:controller => :admin, :action => :go_to_admin_resource, :id => @post.id, :resource => "post"} %>
+	    </div>
+	<% end %>		
+
+</section>
+
+
+
+

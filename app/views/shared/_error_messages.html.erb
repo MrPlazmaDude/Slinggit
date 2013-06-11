@@ -1,0 +1,20 @@
+<% if not object.errors.messages.blank? %>
+    <% [:password_digest].each do |error_to_be_supressed| %>
+        <% if not object.errors.messages[error_to_be_supressed].blank? %>
+            <% object.errors.messages.delete(error_to_be_supressed) %>
+        <% end %>
+    <% end %>
+<% end %>
+
+<% if object.errors.any? %>
+    <div id="error_explanation_bubble">
+      <span class="alert alert-error">
+        The form contains <%= pluralize(object.errors.count, "error") %>.
+      </span>
+      <ul>
+        <% object.errors.full_messages.each do |msg| %>
+            <li>* <%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

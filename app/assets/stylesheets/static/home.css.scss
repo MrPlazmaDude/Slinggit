@@ -1,0 +1,175 @@
+//*  FILENAME: static/home
+ 
+.homepage {
+	.home_featurePost {
+		margin: ($font-size * .5) auto;
+		h1 {
+			border-bottom: 1px solid $lt-grey;
+			margin-bottom: ($font-size * .25);
+			padding-bottom: ($font-size * .125);
+		}
+	}
+	.row > .col6 > .row > .col4.pull_left.white_well {
+		margin-top: 1em;
+	}
+	.homeSignedIn > .col4 > .row:last-child {
+		font-size: .618em;
+		line-height: $leading;
+		margin-top: $font-size;
+		a {
+			color: darken($main-yellow, 15%);
+			span {
+				color: $main-grey;
+			}
+		}
+	}
+	// CMK we'll need to refactor this, but for now..
+	.secondary_inner{
+		.ss-compose, .ss-notebook {
+			width: 47.5%;
+		}
+		.headline{
+			text-align: center;
+		}
+	}
+	.wrong-user {
+		font-size: $small-font;
+		line-height: $leading;
+		margin-top: $font-size;
+		a {
+			color: $main-blue;
+			span {
+				color: $main-grey;
+			}
+		}
+	}
+}
+.app-link{
+	margin-top: $smaller-font;
+	font-size: $smaller-font;
+}
+//not signed in
+.homepage > .wrapper {
+	//position: relative;
+	//z-index: 2222;
+	//top: -16em;
+	//overflow: visible;
+	figure > img {
+		padding-right: 5%;
+	}	
+	h1 {
+		#{$ff}text-shadow: 0 1px 0 rgba($black, .15);
+		#{$wk}text-shadow: 0 1px 0 rgba($black, .15);
+		text-shadow: 0 1px 0 rgba($black, .15);
+		font-size: $bigger-font;
+		text-align: center;
+		margin-bottom: $smallest-font;
+		span {
+			display: block;
+			color: $main-blue;
+		}
+	}
+	article { 
+		&.col3.pull_right {
+			margin-top: $body-font;
+		}
+		> header {
+			margin-bottom: $body-font;
+			h1 {
+				text-align: left;
+				font-size: $body-font;
+			}
+			p {
+				font-size: $small-font;
+				color: $main-grey;
+			}
+		}
+	}
+	aside {
+		.col2 {
+			width: $sixCols * 6;
+			margin: $smallest-font auto;
+			figure{
+				span[class*="ss-"] {
+					font-size: 4em;
+					text-align: center;
+				}
+				//.ss-location {
+				//	padding-left: 20%;
+				//}
+			}
+		}
+	}
+}
+.grey_back{
+	background: $lt-grey;
+	height: 16em;
+	position: relative;
+	z-index: 1111;
+	top: ($leading * 4);
+	}
+.darkGrey_back {
+	@extend .grey_back;
+	background: darken($lt-grey, 10%);
+	top: -16em;
+}
+
+@media all and (min-width: 641px) {
+	.homepage > .wrapper {
+		position: relative;
+		z-index: 8999;
+		h1 {
+			font-size: $biggest-font;
+		}
+		aside {
+			.col2 {
+				width: $sixCols * 2;
+				@extend .well_padding;
+			}
+		}
+		p.row {
+			width: ($sixCols * 3);
+			float: left;
+			display: inline-block;
+			margin-top: $biggest-font;
+			margin-left: ($sixCols * .5);
+		}
+	} 
+	.homepage > .wrapper article.col3.pull_right, .homepage > .wrapper article.col3.main {
+		margin-top: ($biggest-font * 1.5);
+		margin-right: ($sixCols * .5);
+	}
+	.homepage .col6.btn_green {
+		width: ($sixCols * 3);
+		margin-left: 25%;
+		margin-top: $leading;
+	}
+	.homepage .app-link.btn_darkGrey.row {
+		width: ($sixCols * 2);
+		margin-left: ($sixCols * 2);
+		margin-top: $leading;
+	}
+	.homepage > .wrapper article > header h1 {
+		font-size: $big-font;
+	}
+	.homepage > .wrapper article > header p {
+		font-size: $body-font;
+	}
+	.homepage .wrapper section.row {
+		overflow: visible;
+	}
+	.homepage figure.col3.pull_left {
+		width: ($sixCols * 2);
+		margin-top: -($big-font);
+	}
+	.homepage .color_block {
+		height: 23em;
+		width: 100%;
+		position: absolute;
+		top: 8.5em;
+		background: $lt-grey;
+		z-index: 7999;
+		border-bottom: 1px solid lighten($main-grey, 25%);
+		border-top: 1px solid lighten($main-grey, 25%);
+	}
+}

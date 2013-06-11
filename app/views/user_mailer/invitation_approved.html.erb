@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p>
+  Your invitation to Slinggit has been approved. Please follow the link below to get started.
+</p>
+  <a href="<%= url_for :controller => :users, :action => :new, :id => @activation_code, :only_path => false, :host => HOSTURL, :protocol => 'https://' %>"><%= url_for :controller => :users, :action => :new, :id => @activation_code, :only_path => false, :host => HOSTURL %></a>
+<p>
+  iPhone users, the iOS app is coming soon! Please bear with us while we're getting it approved.  In the mean time you'll need to use a desktop to create posts that include a photo.
+</p>
+
+<p>
+  We apologize for the inconvenience and we appreciate and value your feedback. 
+</p>
+
+<p>Sincerely,</p>
+
+<p>Your friends at Slinggit</p>
+</body>
+</html>

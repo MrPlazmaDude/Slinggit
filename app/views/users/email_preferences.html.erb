@@ -1,0 +1,29 @@
+<% provide(:title, 'Email Preferences') %>
+<section id="userEmailPreferences" class="wrapper">
+  <section class="secondary">
+    <div class="secondary_inner">
+
+      <%= render 'shared/user_info' %>
+
+    </div>
+  </section>
+
+  <section id="emailPreferences" class="main">
+
+    <div class="row">
+      <header>
+        <h1>Email Preferences</h1>
+      </header>
+    </div>
+
+    <div id="emailPreferenceWrapper">
+      <%= form_tag do %>
+          <p><%= check_box_tag :system_emails, 1, @email_preference.system_emails %> Receive important emails regarding your account</p>
+          <p><%= check_box_tag :marketing_emails, 1, @email_preference.marketing_emails %> Receive emails with news and updates</p>
+          <%= button_tag "Save", type: "submit", class: "btn_green col2" %>
+      <% end %>
+    </div>
+
+  </section>
+
+</section>

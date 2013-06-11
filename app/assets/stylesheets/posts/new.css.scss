@@ -1,0 +1,80 @@
+//*  FILENAME: posts/new
+.createPost {
+	.add_on {
+		font-size: $font-size;
+		color: $main-grey;
+		margin: $smallest-font ($smallest-font * .5);
+	}
+	#counter_post_hashtag_prefix,
+	#counter_post_content {
+		color: $main-red;
+		float: right;
+		font-size: $smallest-font;
+	}
+	small {
+		font-size: $smaller-font;
+		color: $main-grey;
+	}
+	label[for="post_photo"] {
+		text-align: center;
+	}
+	.controls.thumbnail {
+		a {
+			text-align: center;
+			span.ss-camera {
+				font-size: $biggest-font;
+				line-height: $body-font;
+				display: block;
+				color: $wht;
+				background: $main-blue;
+				@include rounded-corners($radius);
+				padding: $smallest-font ($smallest-font * .5) ($smallest-font * .5);
+				border: 1px solid darken($main-blue, 10%);
+			}
+			span {
+				font-size: $smallest-font;
+				color: $dk-grey;
+			}
+		}
+	}
+	.main {
+		margin-bottom: $body-font;
+	}
+	#post_content,
+	.postSocialAccount,
+	#photoControlGroup {
+		width: 100%;
+		display: block;
+	}
+	//media for mobile device
+	@media all and (min-width: 641px) {
+		.postSocialAccount,
+		#photoControlGroup {
+			width: 50%;
+			display: inline-block;
+			text-align: left;
+		}
+		label[for="post_photo"],
+		.postSocialAccount header {
+			text-align: left;
+			border: none;
+		}
+		.controls.thumbnail {
+			a {
+				text-align: left;
+				span.ss-camera {
+					margin-left: 0;
+					text-align: center;
+				}
+			}
+		}
+	}
+	//end media query
+	fieldset {
+		margin-bottom: $small-font;
+	}
+	input[type="checkbox"] {
+		margin: 0 $font-size 0 0;
+		padding: $smallest-font;
+	}
+}

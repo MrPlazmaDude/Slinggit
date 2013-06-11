@@ -1,0 +1,40 @@
+<% provide(:title, "New Message") %>
+<div class="wrapper messages">
+  <article id="userPosts" class="col4 pull_left postArticle white_well">
+
+    <div id="postArticlesWrapper">
+      <% if not @post.blank? %>
+          <%= render @post %> <!-- row -->
+      <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col6">
+      <%= form_for(@message) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <% if not signed_in? %>
+            <div class="row">
+                <%= f.label :contact_info_json, "Email", for: "message_contact_info_json", class: "col6" %>
+              <div class="col4 pull_left">
+                <%= f.text_field :contact_info_json, :value => @email_entered, :type => :email, :placeholder => "Email Address" %>
+              </div>
+            </div>
+        <% end %>
+
+        <div class="row">
+			     <%= f.label :body, "Message", for: "message_body", class: "col6" %>
+          <div class="col6 pull_left">
+				  <%= f.text_area :body, "maxLength" => 1000, :value => @message_entered, :counterMax => 1000, :class => "row" %>
+          </div>
+        </div>
+
+        <%= f.button 'Send Message', class: "btn_green col2 pull_left", :type => 'submit' %>
+
+      <% end %>
+      </div>
+    </div>
+
+
+  </article>
+</div>

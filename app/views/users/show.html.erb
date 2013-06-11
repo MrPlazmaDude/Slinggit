@@ -1,0 +1,114 @@
+<% provide(:title, @user.name) %>
+<section id="userPostsWrapper" class="wrapper">
+
+  <section class="secondary">
+
+    <div class="secondary_inner">
+
+      <aside class="userInfo row">
+        <a href="<%= user_path(@user) %>" class="col2 pull_left">      
+          <%= image_tag @user.profile_photo_url, :height => "auto", :width => "100%" %>
+        </a>
+        <header class="col4 pull_right">
+          <h1 class="bottom_border"><%= @user.name %></h1>
+            <dl class="dl-horizontal">
+              <dt>Open Posts:</dt> <dd><%= @user.open_post_count %></dd>
+              <dt>Posts Remaining:</dt> <dd><%= (@user.post_limit) - (@user.open_post_count) %></dd>
+              <dt>Open Post Limit:</dt> <dd><%= @user.post_limit %></dd>
+            </dl>
+        </header>
+
+        <% if is_signed_in_and_admin? && !current_user?(@user) %>
+            <div class="row adminActions">
+              <!-- ADMIN ONLY FUNCTIONALITY -->
+                <%= link_to "Admin", {:controller => :admin, :action => :go_to_admin_resource, :id => @user.id, :resource => "user"} %>
+            </div>
+          <% end %>
+      </aside>
+
+    </div>
+
+
+      <% if current_user?(@user) and not current_user.is_suspended? and current_user.email_is_verified? %>        
+
+        <div class="secondary_inner">
+
+          <section class="secondary_actions">
+            
+            <div id="createPostAction" class="row">
+              <% if @passes_limitation != nil and @passes_limitation == true %>
+                <%= link_to "New Post", new_post_path, class: "ss-compose col6 btn_green" %>
+              <% elsif @passes_limitation[0] == false %>
+                <p class="row notice_explanation_bubble">Post Limit Reached</p>
+              <% end %>
+            </div>
+
+            <div id="postsFilters" class="row" style="margin-top: 20px;">
+              <a href="#posted" class="col6 active" id="posted">
+                Posted <span class='nav_arrow pull_right'>&rarr;</span>
+              </a>
+              <a href="#watching" class="col6" id="watching">
+                Watching <span class='nav_arrow pull_right'>&rarr;</span>
+              </a>
+              <a href="#archived" class="col6" id="archived">
+                Archived <span class='nav_arrow pull_right'>&rarr;</span>
+              </a>
+            </div>
+
+          </section>
+
+        </div>
+
+    <% end %>
+
+  </section>
+
+	<section id="userPosts" class="main">
+    <div class="row title_row">
+      <div class="col6 pull_left">
+        <div class="row">
+          <header>
+          </header>
+        </div>
+
+        <% if current_user?(@user) %>        
+
+          <% if not current_user.is_suspended? %>
+
+            <% if current_user.email_is_verified? %>
+              <% if !@user.has_photo_source? && current_user?(@user) %>
+                  <%= render 'users/select_photo' %>
+              <% end %>
+              <% if !@user.posts.any? and (@user.primary_twitter_account.blank? or @user.primary_facebook_account.blank?) %>
+                <%= render 'users/add_more_networks' %>
+              <% end %>
+            <% else %>
+              <div class="row unverified_user">
+                <p><span class="user-name"><%= current_user.name %></span>, before you begin posting, we need you to verify your
+                  email address.</p>
+
+                <p>If you haven't recieved an email from us, check your <span class="notice">spam folder</span> or you can always have
+                  us <%= link_to "resend it.", prep_for_reverification_path %></p>
+              </div> 
+            <% end %>
+
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+
+    <div id="postArticlesWrapper">
+    </div>
+
+  </section>
+
+
+</section>
+
+<%= content_tag "div", "", id: "userJson", data: {user: render(template: 'users/show', formats: [:json], handlers: [:jbuilder])} %>
+<script>
+  $(document).ready(function(){
+    Slinggit.initUsersShow()
+  })
+</script>

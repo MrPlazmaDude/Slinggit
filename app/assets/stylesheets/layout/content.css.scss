@@ -1,0 +1,302 @@
+// Date Revised: May 30, 2012
+// Author: chase courington & chris klein
+
+body {
+  font-family: $main-font;
+  font-size: $font-size;
+  font-weight: 300;
+  background: darken($wht, 5%);
+  color: $dk-grey;
+}
+//WEB FONTS FOR HEADLINES
+.headline,
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Bree Serif', verdana, arial, sans-serif;
+}
+
+// .postArticle {
+// 	a:link, a:visited, a:active {
+// 		color: darken($main-blue, 10%);
+// 	}
+// 	a:hover, a:focus {
+// 		color: darken($main-blue, 20%);
+// 	}
+// }
+
+//END
+//COLUMNS and OFFSETS
+.col1 {
+	width: $sixCols;
+	display: inline-block;
+}
+.col2 {
+	width: ($sixCols * 2);
+	display: inline-block;
+}
+.col3 {
+	width: ($sixCols * 3);
+	display: inline-block;
+}
+.col4 {
+	width: ($sixCols * 4);
+	display: inline-block;
+}
+.col5 {
+	width: ($sixCols * 5);
+	display: inline-block;
+}
+.col6 {
+	width: 100%;
+	display: block;
+}
+
+.offset1 {
+ margin-left: $sixCols;
+}
+.offset2 {
+ margin-left: ($sixCols * 2);
+}
+.offset3 {
+  margin-left: ($sixCols * 3);
+}
+.offset4 {
+  margin-left: ($sixCols * 4);
+}
+.offset5 {
+  margin-left: ($sixCols * 5);
+}
+
+//RIGHT or LEFT
+.pull_right {
+	float: right;
+}
+.pull_left {
+	float: left;
+}
+
+// Visibility
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.invisible {
+  visibility: hidden;
+}
+
+// The following few classes represent the two column layout we'll use for most of
+// the app and will be used to help layout new off-canvas design on mobile
+.main{
+	@extend .col4;
+	@extend .pull_right;
+	@include white-well;
+	//margin-top: 1em;
+	@include box-shadow($wrapper-shadow);
+	// Def need to change this up, just proving out a concept right now.
+	min-height: 220px;
+}
+.secondary{
+	@extend .col2;
+	@extend .pull_left;
+	//margin-top: 1em;
+	padding-right: 1em;
+}
+// Top and bottom I don't really have a use for yet
+// but keeping them for a few
+.secondary-top {
+	margin-top: 1em;
+
+}
+.secondary-bottom {
+	margin-top: 1em;
+}
+// Top and bottom end
+
+.secondary_inner {
+	@include white-well;
+	vertical-align: top;
+	margin-bottom: $body-font;
+	@include box-shadow($wrapper-shadow);
+
+	// Not sure if we want this nested or not.  Leaving it for now
+	.secondary_actions{
+		//margin-top: 1.8em;
+	}
+}
+.well_padding {
+	padding: $small-font;
+}
+.well {
+	@include white-well;
+	border: none;
+  	background-color: transparent;
+}
+.grey_well {
+	@include white-well;
+  	background-color: $wht;
+}
+
+.white_well {
+	@include white-well;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.top_border {
+	border-top: 1px solid #e8e8e8;
+	padding-top: .125em;
+	margin-top: .5em;
+}
+
+.bottom_border {
+	border-bottom: 1px solid #e8e8e8;
+	padding-bottom: .125em;
+	margin-bottom: .5em;
+}
+
+.left_border {
+	border-left: 1px solid #e8e8e8;
+	padding-left: .125em;
+	margin-left: .5em;
+}
+
+.right_border {
+	border-right: 1px solid #e8e8e8;
+	padding-right: .125em;
+	margin-right: .5em;
+}
+
+//ROW
+.row {
+	width: 100%;
+	overflow: hidden;
+	display: block;
+}
+.title_row{
+  margin-bottom: 20px;
+}
+form > fieldset.row {
+	@extend .row;
+	margin-bottom: $big-font;
+}
+//BASIC TYPOGRAPHY
+h1 {
+  font-size: $biggest-font;
+  //font-weight: 600;
+  line-height: $leading;
+}
+h2, h3 {
+  font-size: $bigger-font;
+  line-height: $leading;
+}
+h4, h5 {
+  font-size: $big-font;
+	line-height: $leading;
+}
+h6, p {
+  font-size: $body-font;
+  line-height: $leading;
+}
+p + p {
+	margin-top: $leading;
+}
+strong {
+	font-weight: 600;
+}
+em {
+	font-style: italic;
+}
+small {
+	font-size: $smaller-font;
+}
+.wrapper {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0 2.5%;
+}
+
+.page_contentContainer {
+  //smooth scrolling for iOS 5.1+ releases of webkit (works on android)
+  //-webkit-overflow-scrolling : touch;
+  min-height: 31.314em;
+  //font-size: 62.5%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: $body-font 0;
+  background: $wht url("textures/texture_angle_8x8.png") repeat 0 0;
+    &:first-child {
+      margin: 0 5% 0 0;
+    }
+  }
+
+.pagination ul li {
+	float: left;
+	margin-right: ($font-size /2) !important;
+}
+
+.posts p {
+	text-rendering: optimizelegibility;
+}
+
+.label.label-success,
+.posts .col4 .pull_right a {
+	font-size: $font-size;
+	line-height: $leading;
+	letter-spacing: .1em;
+	word-spacing: .1em;
+	width: 20%;
+	float: left;
+	clear: none;
+}
+
+.img_border {
+  padding: 4px;
+  border: 1px solid $lt-grey;
+  background-color: $wht;
+  @include box-shadow($image-shadow);
+}
+
+.transparent_background {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.row.termsOfService {
+	margin-top: $font-size;
+	line-height: $leading;
+}
+.terms_parent, .terms_child {
+font-size: $body-font;
+line-height: $leading;
+}
+.terms_child {
+	list-style: disc outside;
+	margin-left: $font-size;
+}
+
+.dl-horizontal {
+  font-size: $small-font;
+  dt {
+    float: left;
+    color: $dk-grey;
+    clear: left;
+    text-align: right;
+  }
+  dd {
+    margin-left: 130px;
+  }
+}
+.text_green{
+	color: darken($main-green, 20%);
+	font-size: $small-font;
+}
+.text_yellow{
+	color: darken($main-yellow, 20%);
+	font-size: $small-font;
+}

@@ -1,0 +1,59 @@
+<% provide(:title, "Messages") %>
+<div class="wrapper message">
+  <% if @message %>
+
+  <section class="secondary">
+    <div class="secondary_inner">
+
+      <%= render 'shared/user_info' %>
+
+    </div>
+  </section>
+
+  <section class="main">
+
+      <div class="row subject_row">
+        <h4 class="pull_left title">Subject:</h4>
+
+        <%= link_to @message.source_object.hashtag_prefix, {:controller => :posts, :action => :show, :id => @message.source_object.id_hash}, :class => "pull_left link_to_post" %>
+      </div>
+
+      <div class="row message_row">
+        <% if not @message.thread_history(current_user).blank? %>
+            <% @message.thread_history(current_user).each do |history_message| %>
+
+              <% if history_message.recipient_user_id == current_user.id %>
+                <p class="col4 pull_left title"><strong>From:</strong> <%= history_message.from %> </p>
+                <p class="col2 pull_right timestamp"><%= time_ago_in_words(history_message.created_at) %> ago.</p>
+                <p class="col6 pull_left grey_well"><%= history_message.body %></p>
+              <% else %>
+                <p class="col4 pull_left title">To: <%= history_message.recipient_user_name %> </p>
+                <p class="col2 pull_right timestamp"><%= time_ago_in_words(history_message.created_at) %> ago.</p>
+                <p class="col6 pull_left grey_well"><%= history_message.body %></p>
+
+              <% end %>
+
+            <% end %>
+        <% end %>
+      </div>
+
+    </section>
+
+    <section class="secondary">
+      <div class="secondary_inner">
+
+        <% if @message.last_in_thread.blank? or @message.last_in_thread.recipient_user_id == current_user.id %>
+            <% if @message.sender_user_id.blank? %>
+                <%= link_to "Reply", "http://www.#{current_user.email.scan(/@(.*)/).to_s.gsub(']', '').gsub('[', '').gsub('"', '')}", :class => "btn btn_green row", :target => '_blank', :id => 'messageReplyButton' %>
+            <% else %>
+                <%= link_to "Reply", {:action => :reply, :id => @message.id_hash}, :class => "btn btn_green row", :id => 'messageReplyButton' %>
+            <% end %>
+        <% end %>
+
+        <%= link_to "Delete", {:action => :delete, :id => @message.id_hash, :method => :delete}, :confirm => 'Are you sure you want to delete this message?', :class => "btn btn_red row" %>
+ 
+    </div>
+  </section>
+
+  <% end %>
+</div>

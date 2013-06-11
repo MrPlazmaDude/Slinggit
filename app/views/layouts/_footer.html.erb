@@ -1,0 +1,57 @@
+<footer class="pageFoot">
+	<div class="wrapper">
+
+		<nav class="col3 pull_left">
+			<ul class="row">
+				<li class="pull_left">
+					<%= link_to "About", about_path %>
+				</li>
+				<li class="pull_left">
+					<%= link_to "Contact", contact_path %>
+				</li>
+				<li class="pull_left">
+					<%= link_to "Help", help_path %>
+				</li>
+				<!-- <li class="pull_left col1 <%= 'active' if current_page?(sessions_path) %>">
+					<%= link_to "Sessions", sessions_path %>
+				</li> -->
+				<li class="pull_left">
+					<%= link_to "Terms", terms_of_service_path %>
+				</li>
+				<li class="pull_left">
+					<%= link_to "Home", :action => 'home', :controller => 'static_pages' %>
+				</li>
+			</ul>
+			<ul class="row">
+				<li class="pull_left col2">
+					<a href="https://twitter.com/slinggit" title="Twitter" class="ss-twitter ss-social" >Twitter</a>
+				</li>
+				<li class="pull_left col2">
+					<a href="https://www.facebook.com/Slinggit" title="Facebook" class="ss-facebook ss-social">Facebook</a>
+				</li>
+				<li class="pull_left col2">
+					<a href="http://blog.slinggit.com/" title="Blog" class="ss-tumblr ss-social">Tumblr</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="col3 pull_right">
+		    <div class="row footerSignIn">
+		   		<% if signed_in? %>
+					<%= "#{current_user.name}" %> (<%= link_to "Sign out", signout_path, method: "delete" %>)
+		      	<% else %>
+					<%= link_to "Sign In", signin_path %>
+	      		<% end %>
+			</div>
+			<div class="row">
+		    	<small class="pull_right">&copy;2012 Slinggit, LLC</small>
+				<%= link_to(about_path, :class => "pull_left") do %>
+					<span class="coloradoIcon pull_left"></span>
+					<small class="pull_left">Built in Denver, CO</small>
+				<% end %>
+			</div>
+		</div>
+<!--
+<%= debug(params) if Rails.env.development? %>
+-->
+	</div>
+</footer>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p>People are interested in the items you have for sale.</p>
+
+<p>
+  The following posts have received comments today.<br/>
+  <% @todays_comments.each do |comment| %>
+      <% post = comment.post('id_hash,hashtag_prefix') %>
+      <%= "#{post.hashtag_prefix} - #{BASEURL}/posts/#{post.id_hash}" %><br/>
+  <% end %>
+</p>
+
+<p>Sincerely,</p>
+
+<p>Your friends at Slinggit</p>
+<%= render 'user_mailer/footer' %>
+</body>
+</html>

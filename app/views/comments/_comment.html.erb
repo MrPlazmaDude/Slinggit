@@ -1,0 +1,33 @@
+<div class="row comment bottom_border">
+
+  <div class="col1 pull_left">
+	<%= image_tag comment.user.profile_photo_url %>
+  </div>
+
+  <div class="col5 pull_left">
+    <% if User.find(comment.user_id) == @user %>
+        <div class="row">
+          <span class="label label_yellow">Item Owner</span>
+        </div>
+    <% end %>
+    <div class="row">
+      <p><%= comment.body %></p>
+    </div>
+    <div class="row">
+  		<span class="timestamp">
+    		<p>Commented: <%= time_ago_in_words(comment.created_at) %>
+            ago by <strong><%= link_to "#{comment.user.name}", user_path(comment.user) %></strong></p>
+  		</span>
+      <% if signed_in? and (current_user.id == comment.user_id or current_user.id == comment.post('user_id').user_id) %>
+          <small><%= link_to "delete", :controller => :comments, :action => :delete, :id => comment.id_hash %></small>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+<% if is_signed_in_and_admin? && !current_user?(@user) %>
+  <div class="row adminActions">
+    <!-- ADMIN ONLY FUNCTIONALITY -->
+      <%= link_to "Admin", {:controller => :admin, :action => :go_to_admin_resource, :id => comment.id, :resource => "comment"} %>
+  </div>
+<% end %>

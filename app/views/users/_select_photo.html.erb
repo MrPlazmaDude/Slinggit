@@ -1,0 +1,58 @@
+<div id="photoSelectorWrapper" class="grey_well">
+	
+	<div class="row">
+		<div class="col6">
+			<p>Select your profile photo</p>
+		</div>
+	</div>
+
+	<%= form_for(@user) do |f| %>
+		<div class="row">
+			<div class="col2 pull_left">
+				<div class="row">
+					<%= image_tag "icon_blue_80x80.png", id: "SPS" %>
+				</div>
+				<div class="row">
+					<p>Slinggit</p>
+				</div>
+			</div>
+
+			<% if not @user.primary_twitter_account.blank? %>
+				<div class="col2 pull_left">
+					<div class="row">
+						<%= image_tag @user.primary_twitter_account.image_url, id: "TPS" %>
+					</div>
+					<div class="row">
+						<p>Twitter</p>
+					</div>
+				</div>
+			<% end %>
+			
+			<% if not @user.primary_facebook_account.blank? %>
+				<div class="col2 pull_left">
+					<div class="row">
+						<%= image_tag @user.primary_facebook_account.image_url, id: "FPS" %>
+					</div>
+					<div class="row">
+						<p>Facebook</p>
+					</div>
+				</div>
+			<% end %>
+
+			<div class="col2 pull_left">
+				<div class="row">
+					<%= gravatar_for @user %>
+				</div>
+				<div class="row">
+					<p>Gravatar | <a href="https://gravatar.com/emails" target="_blank">change</a></p>
+				</div>
+			</div>
+		</div>
+		<%= f.hidden_field :photo_source %>
+	<% end %>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		window.initPhotoSelector("<%= @user.id %>", true)
+	})
+</script>

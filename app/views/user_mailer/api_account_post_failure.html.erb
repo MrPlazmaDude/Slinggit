@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<p>Howdy <%= @user.name %>,</p>
+<p>
+  We unfortunately could not post to your <%= @api_account.user_name %> <%= @api_account.api_source.titleize %> account
+  due to an authorization
+  failure.
+</p>
+
+<p>
+  To reauthorize your <%= @api_account.api_source.titleize %> account for future postings, please login and go
+  to <%= "#{BASEURL}/networks" %>  Once there, click on the "Add Another <%= @api_account.api_source.titleize %>
+  Account" button and log in with the account that needs to grant permission.
+</p>
+
+<p>
+  Never hesitate to contact us with any questions or comments.
+</p>
+
+<p>Sincerely,</p>
+
+<p>Your friends at Slinggit</p>
+</body>
+</html>

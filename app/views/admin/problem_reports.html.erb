@@ -1,0 +1,31 @@
+<div class="row wrapper adminSection">  
+  <h1>View Problem Reports</h1>
+
+  <div id="notice"></div>
+  <table class="admin_table table_bordered table-striped">
+    <thead>
+    <th>Exception</th>
+    <th>Class</th>
+    <th>Status</th>
+    <th>Occured At</th>
+    <th>Last Updated By</th>
+    <th>Last Updated At</th>
+    <th>Owned By</th>
+    <th>Actions</th>
+    </thead>
+    <tbody>
+    <% @problem_reports.each do |problem_report| %>
+        <tr>
+          <td><%= problem_report.exception_message %></td>
+          <td><%= problem_report.exception_class %></td>
+          <td><%= problem_report.status %></td>
+          <td><%= problem_report.created_at.strftime("%m/%d/%Y") %></td>
+          <td><%= problem_report.last_updated_by_name %></td>
+          <td><%= problem_report.updated_at.strftime("%m/%d/%Y") %></td>
+          <td><%= problem_report.owner_name %></td>
+          <td><a href="/admin/view_problem_report/<%= problem_report.id %>">wiew details</a> | <a href="/admin/problem_reports/<%= problem_report.id %>">close</a></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

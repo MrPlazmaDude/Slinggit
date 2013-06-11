@@ -1,0 +1,8 @@
+#mainHeader {
+	hgroup {
+		width: $sixCols * .625;
+	}
+	.col2 + .col4.pull_left {
+		float: right;
+	}
+}

@@ -1,0 +1,214 @@
+//FILENAME: posts/show
+
+.editGraphic{
+  width: 16px;
+  height: 16px;
+}
+
+#postDetails{
+	padding-left: 5px;
+	padding-right: 5px;
+
+	.contentHeader{
+		border-bottom: 1px solid $lt-grey;
+		margin-bottom: 12px;
+	}
+
+	.innerHeader {
+
+		#postStatus{
+			text-align: right;
+			font-size: $small-font;
+			margin-top: $bigger-font;
+		}
+		#postStatus.true{
+			color: darken($main_green, 20%);
+		}
+		#postStatus.false{
+			color: darken($main_yellow, 20%);
+		}
+	}
+
+	#postImageWrapper{
+
+		// This will probably go away with ajax
+		#placeholderWrapper{
+			max-width: 250px;
+			margin: auto;
+		}
+
+		img{
+			cursor: pointer;
+		}
+	}
+
+	#post_imagePort{
+		img{
+			cursor: pointer;
+		}
+	}
+
+	#postInfo{
+		vertical-align: top;
+
+		dl{
+			margin-top: $small-font;
+			font-size: $small-font;
+			//font-size: $font-size * 1.1;
+
+			dt{
+				//padding: 5px 5px;
+				font-weight: 600;
+			}
+
+			dd{
+				//text-align: right;
+				//padding: 5px 5px;
+			}
+		}
+	}
+
+	#postDescription {
+		p{
+			padding: 15px 5px 5px 5px;
+			font-size: $body-font;
+		}
+		a{
+			font-size: $body-font;
+		}
+
+	}
+
+}
+
+#comments{
+	margin-top: 22px;
+	@extend .grey_well;
+
+	#counter_comment_body {
+		color: $main-red;
+		float: right;
+	}
+	
+	&> div {
+		padding: 10px;
+
+		#commentContent {
+
+			&> div > p{
+				font-size: $body-font;
+			}
+
+			h3{
+				padding: 0px 0px 10px 0px;
+				margin: 0px 0px 20px 0px;
+				border-bottom: 1px solid $dk-grey;
+
+				strong{
+					font-weight: 600;
+				}
+			}
+
+		}
+
+		#commentInput{
+			margin-top: 20px;
+
+			textarea{
+				width: 100%;
+			}
+		}
+
+		#signUpWrapper{
+			//margin-top: 20px;
+			//background-color: $white;
+			//border: 1px solid #e8e8e8;
+			//@include rounded-corners(3px);
+
+			&> div {
+				//padding: 20px;
+
+				.col2{
+				//	margin-top: 3px;
+				}
+				.col4{
+				//	margin-top: 10px;
+				}
+			}
+		}
+
+	}
+}// end #comments
+
+#postReplyActions{
+
+	.row {
+		margin-bottom: 4px;
+
+		.col2{
+			min-width: 70px;
+		}
+	}
+}
+		
+#postContolsActions{
+	padding: 12px 0px 0px 0px;
+
+	// I'll need to refactor this into more of modular toggle bar type class
+	.button-wrapper.first{
+		padding-left: 0px;
+		padding-right: 5px;
+	}
+
+	.button-wrapper.last{
+		padding-left: 5px;
+		padding-right: 0px;
+	}
+
+	.row {
+		margin-bottom: 4px;
+
+		.col2{
+			min-width: 70px;
+		}
+	}
+
+}
+
+#closedPost{
+	@include white-well;
+	margin-top: $body-font;
+	padding: 20px;
+	text-align: center;
+
+	.innerHeader {
+		padding: 0px 0px 10px 0px;
+	}
+
+	p{
+		font-size: $body-font;
+		line-height: 22px;
+	}
+
+	#findSimilar{
+		margin-top: 15px;
+	}
+}
+
+#networkActions{
+	margin-top: 12px;
+	a{
+		font-size: $body-font;
+		color: darken($main-blue, 20%);
+		text-align: center;
+		background-color: lighten($lt-grey, 12%);
+		border: 1px solid lighten($lt-grey, 8%);
+		padding-top: 7px;
+		padding-bottom: 7px;
+		margin-bottom: 4px;
+
+		&:hover{
+			border: 1px solid lighten($lt-grey, 5%);
+		}
+	}
+}

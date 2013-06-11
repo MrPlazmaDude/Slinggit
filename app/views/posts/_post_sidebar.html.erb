@@ -1,0 +1,41 @@
+<div id="postReplyActions" class="row">
+
+  <div class="row">
+    <%= link_to "Contact Seller", {:controller => :messages, :action => :new, :id => @post.id_hash}, class: "col6 btn_green" %>
+  </div>
+
+  <% if (@twitter_posts.any? or @facebook_posts.any?) %>
+    <div id="networkActions" class="row">
+      <div class="row">
+        <div class="col5 innerHeader">
+          <p>Posted on:</p>
+        </div>  
+      </div> 
+
+      <% if not get_post_link(@post, @twitter_posts, 'twitter').blank? %>
+        <div class="row">
+          <%= link_to "#{get_post_link(@post, @twitter_posts, 'twitter').link_to_post}", class: "col6 b ss-social ss-twitter", target: "_blank" do %>
+            Twitter &rarr;
+          <% end %>
+        </div>
+      <% end %>
+
+       <% if not get_post_link(@post, @facebook_posts, 'facebook').blank? %>
+        <div class="row">  
+         <%= link_to "#{get_post_link(@post, @facebook_posts, 'facebook').link_to_post}", class: "col6 b ss-social ss-facebook", target: "_blank" do %>
+            Facebook &rarr;
+          <% end %>
+        </div>
+       <% end %>
+    </div> 
+  <% end %> 
+
+
+  <div class="pull_left flag">
+	<%= link_to :controller => :posts, :action => :report_abuse, :id => @post.id_hash do %>
+	<span class="ss-flag"></span>
+	Flag Inappropriate
+	<% end %>
+  </div>
+
+</div>
